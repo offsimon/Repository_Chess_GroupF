@@ -1,0 +1,344 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane style="-fx-background-color: #D3D3D3;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.pcgf.ChessboardController">
+   <children>
+      <GridPane fx:id="gridPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="600.0" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="40.0">
+        <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#789454" height="75.0" onMouseClicked="#moveFigure" stroke="WHITE" strokeType="INSIDE" width="75.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="75.0" onMouseClicked="#moveFigure" stroke="WHITE" strokeType="INSIDE" width="75.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#789454" height="75.0" onMouseClicked="#moveFigure" stroke="#789454" strokeType="INSIDE" width="75.0" GridPane.columnIndex="1" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="75.0" onMouseClicked="#moveFigure" stroke="WHITE" strokeType="INSIDE" width="75.0" GridPane.columnIndex="2" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#789454" height="75.0" onMouseClicked="#moveFigure" stroke="#789454" strokeType="INSIDE" width="75.0" GridPane.columnIndex="3" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="75.0" onMouseClicked="#moveFigure" stroke="WHITE" strokeType="INSIDE" width="75.0" GridPane.columnIndex="4" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#789454" height="75.0" onMouseClicked="#moveFigure" stroke="#789454" strokeType="INSIDE" width="75.0" GridPane.columnIndex="5" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="75.0" onMouseClicked="#moveFigure" stroke="WHITE" strokeType="INSIDE" width="75.0" GridPane.columnIndex="6" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#789454" height="75.0" onMouseClicked="#moveFigure" stroke="#789454" strokeType="INSIDE" width="75.0" GridPane.columnIndex="7" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#789454" height="75.0" onMouseClicked="#moveFigure" stroke="#789454" strokeType="INSIDE" width="75.0" GridPane.rowIndex="1" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="75.0" onMouseClicked="#moveFigure" stroke="WHITE" strokeType="INSIDE" width="75.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#789454" height="75.0" onMouseClicked="#moveFigure" stroke="#789454" strokeType="INSIDE" width="75.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="75.0" onMouseClicked="#moveFigure" stroke="WHITE" strokeType="INSIDE" width="75.0" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#789454" height="75.0" onMouseClicked="#moveFigure" stroke="#789454" strokeType="INSIDE" width="75.0" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="75.0" onMouseClicked="#moveFigure" stroke="WHITE" strokeType="INSIDE" width="75.0" GridPane.columnIndex="5" GridPane.rowIndex="1" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#789454" height="75.0" onMouseClicked="#moveFigure" stroke="#789454" strokeType="INSIDE" width="75.0" GridPane.columnIndex="6" GridPane.rowIndex="1" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="75.0" onMouseClicked="#moveFigure" stroke="WHITE" strokeType="INSIDE" width="75.0" GridPane.columnIndex="7" GridPane.rowIndex="1" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="75.0" onMouseClicked="#moveFigure" stroke="WHITE" strokeType="INSIDE" width="75.0" GridPane.rowIndex="2" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#789454" height="75.0" onMouseClicked="#moveFigure" stroke="#789454" strokeType="INSIDE" width="75.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="75.0" onMouseClicked="#moveFigure" stroke="WHITE" strokeType="INSIDE" width="75.0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#789454" height="75.0" onMouseClicked="#moveFigure" stroke="#789454" strokeType="INSIDE" width="75.0" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="75.0" onMouseClicked="#moveFigure" stroke="WHITE" strokeType="INSIDE" width="75.0" GridPane.columnIndex="4" GridPane.rowIndex="2" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#789454" height="75.0" onMouseClicked="#moveFigure" stroke="#789454" strokeType="INSIDE" width="75.0" GridPane.columnIndex="5" GridPane.rowIndex="2" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="75.0" onMouseClicked="#moveFigure" stroke="WHITE" strokeType="INSIDE" width="75.0" GridPane.columnIndex="6" GridPane.rowIndex="2" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#789454" height="75.0" onMouseClicked="#moveFigure" stroke="#789454" strokeType="INSIDE" width="75.0" GridPane.columnIndex="7" GridPane.rowIndex="2" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#789454" height="75.0" onMouseClicked="#moveFigure" stroke="#789454" strokeType="INSIDE" width="75.0" GridPane.rowIndex="3" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="75.0" onMouseClicked="#moveFigure" stroke="WHITE" strokeType="INSIDE" width="75.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#789454" height="75.0" onMouseClicked="#moveFigure" stroke="#789454" strokeType="INSIDE" width="75.0" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="75.0" layoutX="10.0" layoutY="-52.0" onMouseClicked="#moveFigure" stroke="WHITE" strokeType="INSIDE" width="75.0" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#789454" height="75.0" layoutX="10.0" layoutY="-52.0" onMouseClicked="#moveFigure" stroke="#789454" strokeType="INSIDE" width="75.0" GridPane.columnIndex="4" GridPane.rowIndex="3" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="75.0" layoutX="10.0" layoutY="-52.0" onMouseClicked="#moveFigure" stroke="WHITE" strokeType="INSIDE" width="75.0" GridPane.columnIndex="5" GridPane.rowIndex="3" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#789454" height="75.0" layoutX="10.0" layoutY="-52.0" onMouseClicked="#moveFigure" stroke="#789454" strokeType="INSIDE" width="75.0" GridPane.columnIndex="6" GridPane.rowIndex="3" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="75.0" layoutX="10.0" layoutY="-52.0" onMouseClicked="#moveFigure" stroke="WHITE" strokeType="INSIDE" width="75.0" GridPane.columnIndex="7" GridPane.rowIndex="3" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="75.0" layoutX="10.0" layoutY="-52.0" onMouseClicked="#moveFigure" stroke="WHITE" strokeType="INSIDE" width="75.0" GridPane.rowIndex="4" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#789454" height="75.0" layoutX="10.0" layoutY="-52.0" onMouseClicked="#moveFigure" stroke="#789454" strokeType="INSIDE" width="75.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="75.0" layoutX="10.0" layoutY="-52.0" onMouseClicked="#moveFigure" stroke="WHITE" strokeType="INSIDE" width="75.0" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#789454" height="75.0" layoutX="10.0" layoutY="-52.0" onMouseClicked="#moveFigure" stroke="#789454" strokeType="INSIDE" width="75.0" GridPane.columnIndex="3" GridPane.rowIndex="4" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="75.0" layoutX="10.0" layoutY="-52.0" onMouseClicked="#moveFigure" stroke="WHITE" strokeType="INSIDE" width="75.0" GridPane.columnIndex="4" GridPane.rowIndex="4" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#789454" height="75.0" layoutX="10.0" layoutY="-52.0" onMouseClicked="#moveFigure" stroke="#789454" strokeType="INSIDE" width="75.0" GridPane.columnIndex="5" GridPane.rowIndex="4" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="75.0" layoutX="10.0" layoutY="-52.0" onMouseClicked="#moveFigure" stroke="WHITE" strokeType="INSIDE" width="75.0" GridPane.columnIndex="6" GridPane.rowIndex="4" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#789454" height="75.0" layoutX="10.0" layoutY="-52.0" onMouseClicked="#moveFigure" stroke="#789454" strokeType="INSIDE" width="75.0" GridPane.columnIndex="7" GridPane.rowIndex="4" />
+            <Rectangle fx:id="r5c0" arcHeight="5.0" arcWidth="5.0" fill="#789454" height="75.0" layoutX="10.0" layoutY="-52.0" onMouseClicked="#moveFigure" stroke="#789454" strokeType="INSIDE" width="75.0" GridPane.rowIndex="5" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="75.0" layoutX="10.0" layoutY="-52.0" onMouseClicked="#moveFigure" stroke="WHITE" strokeType="INSIDE" width="75.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#789454" height="75.0" layoutX="10.0" layoutY="-52.0" onMouseClicked="#moveFigure" stroke="#789454" strokeType="INSIDE" width="75.0" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="75.0" layoutX="10.0" layoutY="-52.0" onMouseClicked="#moveFigure" stroke="WHITE" strokeType="INSIDE" width="75.0" GridPane.columnIndex="3" GridPane.rowIndex="5" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#789454" height="75.0" layoutX="10.0" layoutY="-52.0" onMouseClicked="#moveFigure" stroke="#789454" strokeType="INSIDE" width="75.0" GridPane.columnIndex="4" GridPane.rowIndex="5" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="75.0" layoutX="10.0" layoutY="-52.0" onMouseClicked="#moveFigure" stroke="WHITE" strokeType="INSIDE" width="75.0" GridPane.columnIndex="5" GridPane.rowIndex="5" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#789454" height="75.0" layoutX="10.0" layoutY="-52.0" onMouseClicked="#moveFigure" stroke="#789454" strokeType="INSIDE" width="75.0" GridPane.columnIndex="6" GridPane.rowIndex="5" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="75.0" layoutX="10.0" layoutY="-52.0" onMouseClicked="#moveFigure" stroke="WHITE" strokeType="INSIDE" width="75.0" GridPane.columnIndex="7" GridPane.rowIndex="5" />
+            <Rectangle fx:id="r6c0" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="75.0" layoutX="10.0" layoutY="-52.0" onMouseClicked="#moveFigure" stroke="WHITE" strokeType="INSIDE" width="75.0" GridPane.rowIndex="6" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#789454" height="75.0" layoutX="10.0" layoutY="-52.0" onMouseClicked="#moveFigure" stroke="#789454" strokeType="INSIDE" width="75.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="75.0" layoutX="10.0" layoutY="-52.0" onMouseClicked="#moveFigure" stroke="WHITE" strokeType="INSIDE" width="75.0" GridPane.columnIndex="2" GridPane.rowIndex="6" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#789454" height="75.0" layoutX="10.0" layoutY="-52.0" onMouseClicked="#moveFigure" stroke="#789454" strokeType="INSIDE" width="75.0" GridPane.columnIndex="3" GridPane.rowIndex="6" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="75.0" layoutX="10.0" layoutY="-52.0" onMouseClicked="#moveFigure" stroke="WHITE" strokeType="INSIDE" width="75.0" GridPane.columnIndex="4" GridPane.rowIndex="6" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#789454" height="75.0" layoutX="10.0" layoutY="-52.0" onMouseClicked="#moveFigure" stroke="#789454" strokeType="INSIDE" width="75.0" GridPane.columnIndex="5" GridPane.rowIndex="6" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="75.0" layoutX="10.0" layoutY="-52.0" onMouseClicked="#moveFigure" stroke="WHITE" strokeType="INSIDE" width="75.0" GridPane.columnIndex="6" GridPane.rowIndex="6" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#789454" height="75.0" layoutX="10.0" layoutY="-52.0" onMouseClicked="#moveFigure" stroke="#789454" strokeType="INSIDE" width="75.0" GridPane.columnIndex="7" GridPane.rowIndex="6" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#789454" height="75.0" layoutX="10.0" layoutY="-52.0" onMouseClicked="#moveFigure" stroke="#789454" strokeType="INSIDE" width="75.0" GridPane.rowIndex="7" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="75.0" layoutX="10.0" layoutY="-52.0" onMouseClicked="#moveFigure" stroke="WHITE" strokeType="INSIDE" width="75.0" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#789454" height="75.0" layoutX="10.0" layoutY="-52.0" onMouseClicked="#moveFigure" stroke="#789454" strokeType="INSIDE" width="75.0" GridPane.columnIndex="2" GridPane.rowIndex="7" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="75.0" layoutX="10.0" layoutY="-52.0" onMouseClicked="#moveFigure" stroke="WHITE" strokeType="INSIDE" width="75.0" GridPane.columnIndex="3" GridPane.rowIndex="7" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#789454" height="75.0" layoutX="10.0" layoutY="-52.0" onMouseClicked="#moveFigure" stroke="#789454" strokeType="INSIDE" width="75.0" GridPane.columnIndex="4" GridPane.rowIndex="7" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="75.0" layoutX="10.0" layoutY="-52.0" onMouseClicked="#moveFigure" stroke="WHITE" strokeType="INSIDE" width="75.0" GridPane.columnIndex="5" GridPane.rowIndex="7" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#789454" height="75.0" layoutX="10.0" layoutY="-52.0" onMouseClicked="#moveFigure" stroke="#789454" strokeType="INSIDE" width="75.0" GridPane.columnIndex="6" GridPane.rowIndex="7" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="75.0" layoutX="10.0" layoutY="-52.0" onMouseClicked="#moveFigure" stroke="WHITE" strokeType="INSIDE" width="75.0" GridPane.columnIndex="7" GridPane.rowIndex="7" />
+            <ImageView fx:id="pawnBlack1" fitHeight="75.0" fitWidth="75.0" onMouseClicked="#selectFigure" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="1">
+               <image>
+                  <Image url="@images/pawnBlack.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="pawnBlack2" fitHeight="75.0" fitWidth="75.0" layoutX="10.0" layoutY="85.0" onMouseClicked="#selectFigure" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="1">
+               <image>
+                  <Image url="@images/pawnBlack.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="pawnBlack3" fitHeight="75.0" fitWidth="75.0" layoutX="85.0" layoutY="85.0" onMouseClicked="#selectFigure" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="1">
+               <image>
+                  <Image url="@images/pawnBlack.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="pawnBlack4" fitHeight="75.0" fitWidth="75.0" layoutX="160.0" layoutY="85.0" onMouseClicked="#selectFigure" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.rowIndex="1">
+               <image>
+                  <Image url="@images/pawnBlack.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="pawnBlack5" fitHeight="75.0" fitWidth="75.0" layoutX="235.0" layoutY="85.0" onMouseClicked="#selectFigure" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.rowIndex="1">
+               <image>
+                  <Image url="@images/pawnBlack.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="pawnBlack6" fitHeight="75.0" fitWidth="75.0" layoutX="310.0" layoutY="85.0" onMouseClicked="#selectFigure" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="5" GridPane.rowIndex="1">
+               <image>
+                  <Image url="@images/pawnBlack.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="pawnBlack7" fitHeight="75.0" fitWidth="75.0" layoutX="385.0" layoutY="85.0" onMouseClicked="#selectFigure" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="6" GridPane.rowIndex="1">
+               <image>
+                  <Image url="@images/pawnBlack.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="pawnBlack8" fitHeight="75.0" fitWidth="75.0" layoutX="460.0" layoutY="85.0" onMouseClicked="#selectFigure" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="7" GridPane.rowIndex="1">
+               <image>
+                  <Image url="@images/pawnBlack.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="rookBlack1" fitHeight="75.0" fitWidth="75.0" layoutX="10.0" layoutY="85.0" onMouseClicked="#selectFigure" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/rookBlack.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="rookBlack2" fitHeight="75.0" fitWidth="75.0" layoutX="10.0" layoutY="10.0" onMouseClicked="#selectFigure" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="7">
+               <image>
+                  <Image url="@images/rookBlack.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="knightBlack1" fitHeight="75.0" fitWidth="75.0" layoutX="535.0" layoutY="10.0" onMouseClicked="#selectFigure" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1">
+               <image>
+                  <Image url="@images/knightBlack.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="knightBlack2" fitHeight="75.0" fitWidth="75.0" layoutX="85.0" layoutY="10.0" onMouseClicked="#selectFigure" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="6">
+               <image>
+                  <Image url="@images/knightBlack.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="bishopBlack1" fitHeight="75.0" fitWidth="75.0" layoutX="85.0" layoutY="10.0" onMouseClicked="#selectFigure" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2">
+               <image>
+                  <Image url="@images/bishopBlack.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="bishopBlack2" fitHeight="75.0" fitWidth="75.0" layoutX="160.0" layoutY="10.0" onMouseClicked="#selectFigure" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="5">
+               <image>
+                  <Image url="@images/bishopBlack.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="queenBlack1" fitHeight="75.0" fitWidth="75.0" layoutX="160.0" layoutY="10.0" onMouseClicked="#selectFigure" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3">
+               <image>
+                  <Image url="@images/queenBlack.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="kingBlack1" fitHeight="75.0" fitWidth="75.0" layoutX="235.0" layoutY="10.0" onMouseClicked="#selectFigure" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4">
+               <image>
+                  <Image url="@images/kingBlack.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="pawnWhite1" fitHeight="75.0" fitWidth="75.0" layoutX="310.0" layoutY="10.0" onMouseClicked="#selectFigure" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="6">
+               <image>
+                  <Image url="@images/pawnWhite.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="pawnWhite2" fitHeight="75.0" fitWidth="75.0" layoutX="10.0" layoutY="460.0" onMouseClicked="#selectFigure" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="6">
+               <image>
+                  <Image url="@images/pawnWhite.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="pawnWhite7" fitHeight="75.0" fitWidth="75.0" layoutX="85.0" layoutY="460.0" onMouseClicked="#selectFigure" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="6" GridPane.rowIndex="6">
+               <image>
+                  <Image url="@images/pawnWhite.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="pawnWhite5" fitHeight="75.0" fitWidth="75.0" layoutX="85.0" layoutY="460.0" onMouseClicked="#selectFigure" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.rowIndex="6">
+               <image>
+                  <Image url="@images/pawnWhite.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="pawnWhite4" fitHeight="75.0" fitWidth="75.0" layoutX="85.0" layoutY="460.0" onMouseClicked="#selectFigure" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.rowIndex="6">
+               <image>
+                  <Image url="@images/pawnWhite.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="pawnWhite3" fitHeight="75.0" fitWidth="75.0" layoutX="85.0" layoutY="460.0" onMouseClicked="#selectFigure" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="6">
+               <image>
+                  <Image url="@images/pawnWhite.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="pawnWhite6" fitHeight="75.0" fitWidth="75.0" layoutX="310.0" layoutY="460.0" onMouseClicked="#selectFigure" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="5" GridPane.rowIndex="6">
+               <image>
+                  <Image url="@images/pawnWhite.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="pawnWhite8" fitHeight="75.0" fitWidth="75.0" layoutX="460.0" layoutY="460.0" onMouseClicked="#selectFigure" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="7" GridPane.rowIndex="6">
+               <image>
+                  <Image url="@images/pawnWhite.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="rookWhite1" fitHeight="75.0" fitWidth="75.0" layoutX="10.0" layoutY="460.0" onMouseClicked="#selectFigure" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="7">
+               <image>
+                  <Image url="@images/rookWhite.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="rookWhite2" fitHeight="75.0" fitWidth="75.0" layoutX="10.0" layoutY="535.0" onMouseClicked="#selectFigure" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="7" GridPane.rowIndex="7">
+               <image>
+                  <Image url="@images/rookWhite.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="knightWhite1" fitHeight="75.0" fitWidth="75.0" layoutX="10.0" layoutY="535.0" onMouseClicked="#selectFigure" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="7">
+               <image>
+                  <Image url="@images/knightWhite.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="knightWhite2" fitHeight="75.0" fitWidth="75.0" layoutX="85.0" layoutY="535.0" onMouseClicked="#selectFigure" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="6" GridPane.rowIndex="7">
+               <image>
+                  <Image url="@images/knightWhite.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="bishopWhite1" fitHeight="75.0" fitWidth="75.0" layoutX="85.0" layoutY="535.0" onMouseClicked="#selectFigure" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="7">
+               <image>
+                  <Image url="@images/bishopWhite.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="bishopWhite2" fitHeight="75.0" fitWidth="75.0" layoutX="160.0" layoutY="535.0" onMouseClicked="#selectFigure" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="5" GridPane.rowIndex="7">
+               <image>
+                  <Image url="@images/bishopWhite.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="queenWhite1" fitHeight="75.0" fitWidth="75.0" layoutX="160.0" layoutY="535.0" onMouseClicked="#selectFigure" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.rowIndex="7">
+               <image>
+                  <Image url="@images/queenWhite.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="kingWhite1" fitHeight="75.0" fitWidth="75.0" layoutX="235.0" layoutY="535.0" onMouseClicked="#selectFigure" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.rowIndex="7">
+               <image>
+                  <Image url="@images/kingWhite.png" />
+               </image>
+            </ImageView>
+         </children>
+         <opaqueInsets>
+            <Insets left="30.0" />
+         </opaqueInsets>
+      </GridPane>
+      <Text layoutX="70.0" layoutY="662.0" strokeType="OUTSIDE" strokeWidth="0.0" text="A">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Text>
+      <Text layoutX="145.0" layoutY="662.0" strokeType="OUTSIDE" strokeWidth="0.0" text="B">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Text>
+      <Text layoutX="220.0" layoutY="662.0" strokeType="OUTSIDE" strokeWidth="0.0" text="C">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Text>
+      <Text layoutX="295.0" layoutY="662.0" strokeType="OUTSIDE" strokeWidth="0.0" text="D">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Text>
+      <Text layoutX="370.0" layoutY="662.0" strokeType="OUTSIDE" strokeWidth="0.0" text="E">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Text>
+      <Text layoutX="445.0" layoutY="662.0" strokeType="OUTSIDE" strokeWidth="0.0" text="F">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Text>
+      <Text layoutX="520.0" layoutY="662.0" strokeType="OUTSIDE" strokeWidth="0.0" text="G">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Text>
+      <Text layoutX="595.0" layoutY="662.0" strokeType="OUTSIDE" strokeWidth="0.0" text="H">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Text>
+      <Text layoutX="15.0" layoutY="610.0" strokeType="OUTSIDE" strokeWidth="0.0" text="1">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Text>
+      <Text layoutX="15.0" layoutY="460.0" strokeType="OUTSIDE" strokeWidth="0.0" text="3">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Text>
+      <Text layoutX="15.0" layoutY="535.0" strokeType="OUTSIDE" strokeWidth="0.0" text="2">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Text>
+      <Text layoutX="15.0" layoutY="385.0" strokeType="OUTSIDE" strokeWidth="0.0" text="4">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Text>
+      <Text layoutX="15.0" layoutY="310.0" strokeType="OUTSIDE" strokeWidth="0.0" text="5">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Text>
+      <Text layoutX="15.0" layoutY="235.0" strokeType="OUTSIDE" strokeWidth="0.0" text="6">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Text>
+      <Text layoutX="15.0" layoutY="160.0" strokeType="OUTSIDE" strokeWidth="0.0" text="7">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Text>
+      <Text layoutX="15.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0" text="8">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Text>
+   </children>
+</AnchorPane>
