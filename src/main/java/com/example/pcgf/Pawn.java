@@ -4,11 +4,11 @@ import javafx.scene.image.ImageView;
 
 public class Pawn{
 
-    public boolean movementWhitePawn(Integer row, Integer column, ImageView pressed){
+    public boolean movementWhitePawn(Integer pressedRow, Integer pressedColumn, Integer row, Integer column){
         return true;
     }
 
-    public boolean movementBlackPawn(Integer row, Integer column, ImageView pressed) {
+    public boolean movementBlackPawn(Integer pressedRow, Integer pressedColumn, Integer row, Integer column) {
         return true;
     }
 }

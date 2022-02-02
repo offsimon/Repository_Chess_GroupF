@@ -61,6 +61,7 @@ public class ChessboardController {
     private Rectangle pressedRec = null;
     private static MouseEvent me = null;
     private static LoginController login;
+    private boolean movementIsPossible = true;
 
     public ChessboardController(LoginController loginController) {
         login = loginController;
@@ -76,9 +77,9 @@ public class ChessboardController {
 
             replaceImageToUnselected();
             Integer row = GridPane.getRowIndex((Node) mouseEvent.getSource());
-            row = checkRow(row);
+            row = checkInteger(row);
             Integer column = GridPane.getColumnIndex((Node) mouseEvent.getSource());
-            column = checkColumn(column);
+            column = checkInteger(column);
 
             for (Node node : gridPane.getChildren()) {
                 if(node == mouseEvent.getSource()) node.setVisible(false);
@@ -96,40 +97,39 @@ public class ChessboardController {
         me = mouseEvent;
         if (isPressed && pressed != null) {
             Integer row = GridPane.getRowIndex((Node) mouseEvent.getSource());
-            row = checkRow(row);
+            row = checkInteger(row);
 
             Integer column = GridPane.getColumnIndex((Node) mouseEvent.getSource());
-            column = checkColumn(column);
+            column = checkInteger(column);
 
-            replaceImageToUnselected();
-
-            moveFigure(row, column);
-            connectToServerWrite();
+            assignFigure(row, column);
+            if(movementIsPossible){
+                replaceImageToUnselected();
+                moveFigure(row, column);
+                connectToServerWrite();
+            }else{
+                replaceImageToUnselected();
+                isPressed = false;
+                pressed = null;
+            }
         }
     }
 
     public void moveFigure(Integer row, Integer column){
-        GridPane.setRowIndex(pressed, row);
-        GridPane.setColumnIndex(pressed, column);
-        isPressed = false;
-        pressed = null;
+
+            GridPane.setRowIndex(pressed, row);
+            GridPane.setColumnIndex(pressed, column);
+            isPressed = false;
+            pressed = null;
+            movementIsPossible = false;
     }
 
-    public static Integer checkRow(Integer row){
-        if(row == null){
-            row = 0;
+    public static Integer checkInteger(Integer num){
+        if(num == null){
+            num = 0;
         }
-        return row;
+        return num;
     }
-
-    public static Integer checkColumn(Integer column){
-        if(column == null){
-            column = 0;
-        }
-        return column;
-    }
-
-
 
     public void replaceImageToUnselected(){
         String name = pressed.getId().replaceAll(".$", "");
@@ -183,64 +183,90 @@ public class ChessboardController {
     }
 
     public static String getColumnIndex() {
-        return checkColumn(GridPane.getColumnIndex((Node) me.getSource())).toString();
+        return checkInteger(GridPane.getColumnIndex((Node) me.getSource())).toString();
     }
 
     public static String getRowIndex() {
-        return checkRow(GridPane.getRowIndex((Node) me.getSource())).toString();
+        return checkInteger(GridPane.getRowIndex((Node) me.getSource())).toString();
+    }
+
+    public ImageView getPressed() {
+        return pressed;
+    }
+
+    public void setGridPane(GridPane gridPane) {
+        this.gridPane = gridPane;
     }
 
     public void assignFigure(Integer row, Integer column){
 
         String id = pressed.getId().replaceAll(".$", "");
+        Integer pressedRow = checkInteger(GridPane.getRowIndex(pressed));
+        Integer pressedColumn = checkInteger(GridPane.getColumnIndex(pressed));
 
         switch(id){
             case "pawnWhite":
-                pawn.movementWhitePawn(row, column, pressed);
+                if(pawn.movementWhitePawn(pressedRow, pressedColumn, row, column)){
+                    movementIsPossible = true;
+                }
                 break;
 
             case "bishopWhite":
-                bishop.movementWhiteBishop(row, column, pressed);
+                if(bishop.movementWhiteBishop(pressedRow, pressedColumn, row, column)){
+                    movementIsPossible = true;
+                }
                 break;
 
             case "knightWhite":
-                knight.movementWhiteKnight(row, column, pressed);
+
+            case "knightBlack":
+                if(knight.movementKnight(pressedRow, pressedColumn, row, column)){
+                    movementIsPossible = true;
+                }
                 break;
 
             case "rookWhite":
-                rook.movementWhiteRook(row, column, pressed);
+                if(rook.movementWhiteRook(pressedRow, pressedColumn, row, column)){
+                    movementIsPossible = true;
+                }
                 break;
 
             case "queenWhite":
-                queen.movementWhiteQueen(row, column, pressed);
+                if(queen.movementWhiteQueen(pressedRow, pressedColumn, row, column)){
+                    movementIsPossible = true;
+                }
                 break;
 
             case "kingWhite":
-                king.movementWhiteKing(row, column, pressed);
+
+            case "kingBlack":
+                if(king.movementKing(pressedRow, pressedColumn, row, column)){
+                    movementIsPossible = true;
+                }
                 break;
 
             case "pawnBlack":
-                pawn.movementBlackPawn(row, column, pressed);
+                if(pawn.movementBlackPawn(pressedRow, pressedColumn, row, column)){
+                    movementIsPossible = true;
+                }
                 break;
 
             case "bishopBlack":
-                bishop.movementBlackBishop(row, column, pressed);
-                break;
-
-            case "knightBlack":
-                knight.movementBlackKnight(row, column, pressed);
+                if(bishop.movementBlackBishop(pressedRow, pressedColumn, row, column)){
+                    movementIsPossible = true;
+                }
                 break;
 
             case "rookBlack":
-                rook.movementBlackRook(row, column, pressed);
+                if(rook.movementBlackRook(pressedRow, pressedColumn, row, column)){
+                    movementIsPossible = true;
+                }
                 break;
 
             case "queenBlack":
-                queen.movementBlackQueen(row, column, pressed);
-                break;
-
-            case "kingBlack":
-                king.movementBlackKing(row, column, pressed);
+                if(queen.movementBlackQueen(pressedRow, pressedColumn, row, column)){
+                    movementIsPossible = true;
+                }
                 break;
         }
     }
