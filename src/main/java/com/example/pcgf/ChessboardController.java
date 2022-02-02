@@ -69,28 +69,33 @@ public class ChessboardController {
 
     public void figureOnClick(MouseEvent mouseEvent) {
         me = mouseEvent;
-        if (pressed == mouseEvent.getSource() && isPressed) {//same figure selected again
-            replaceImageToUnselected();
-            pressed = null;
-            isPressed = false;
-        } else if (pressed != mouseEvent.getSource() && isPressed) {//figure already selected but not the same == capture figure
+            if (pressed == mouseEvent.getSource() && isPressed) {//same figure selected again
+                replaceImageToUnselected();
+                pressed = null;
+                isPressed = false;
+            } else if (pressed != mouseEvent.getSource() && isPressed) {//figure already selected but not the same == capture figure
+                Node n = (Node) mouseEvent.getSource();
+                if(pressed.getId().contains("White") && n.getId().contains("White") || pressed.getId().contains("Black") && n.getId().contains("Black")){ //ensure the player dont capture his own figure
+                    replaceImageToUnselected();
+                    unselectFigure();
+                }else{
+                    replaceImageToUnselected();
+                    Integer row = GridPane.getRowIndex((Node) mouseEvent.getSource());
+                    row = checkInteger(row);
+                    Integer column = GridPane.getColumnIndex((Node) mouseEvent.getSource());
+                    column = checkInteger(column);
 
-            replaceImageToUnselected();
-            Integer row = GridPane.getRowIndex((Node) mouseEvent.getSource());
-            row = checkInteger(row);
-            Integer column = GridPane.getColumnIndex((Node) mouseEvent.getSource());
-            column = checkInteger(column);
-
-            for (Node node : gridPane.getChildren()) {
-                if(node == mouseEvent.getSource()) node.setVisible(false);
+                    for (Node node : gridPane.getChildren()) {
+                        if(node == mouseEvent.getSource()) node.setVisible(false);
+                    }
+                    moveFigure(row, column);
+                }
+            } else {//no figure selected
+                pressed = (ImageView) mouseEvent.getSource();
+                isPressed = true;
+                replaceImageToSelected();
+                connectToServerWrite();
             }
-            moveFigure(row, column);
-        } else {//no figure selected
-            pressed = (ImageView) mouseEvent.getSource();
-            isPressed = true;
-            replaceImageToSelected();
-            connectToServerWrite();
-        }
     }
 
     public void fieldOnClick(MouseEvent mouseEvent) {
@@ -114,34 +119,6 @@ public class ChessboardController {
             }
         }
     }
-
-    public void moveFigure(Integer row, Integer column){
-
-            GridPane.setRowIndex(pressed, row);
-            GridPane.setColumnIndex(pressed, column);
-            isPressed = false;
-            pressed = null;
-            movementIsPossible = false;
-    }
-
-    public static Integer checkInteger(Integer num){
-        if(num == null){
-            num = 0;
-        }
-        return num;
-    }
-
-    public void replaceImageToUnselected(){
-        String name = pressed.getId().replaceAll(".$", "");
-        pressed.setImage(new Image(String.valueOf(this.getClass().getResource("/com/example/pcgf/images/" + name + ".png"))));
-    }
-
-    public void replaceImageToSelected(){
-        String name = pressed.getId().replaceAll(".$", "");
-        name += "Selected";
-        pressed.setImage(new Image(String.valueOf(this.getClass().getResource("/com/example/pcgf/images/" + name + ".png"))));
-    }
-
     public static void connectToServerWrite() {
         String ipAddress = login.getIpAddress();
         ObjectOutputStream streamToServer;
@@ -182,22 +159,6 @@ public class ChessboardController {
         }
     }
 
-    public static String getColumnIndex() {
-        return checkInteger(GridPane.getColumnIndex((Node) me.getSource())).toString();
-    }
-
-    public static String getRowIndex() {
-        return checkInteger(GridPane.getRowIndex((Node) me.getSource())).toString();
-    }
-
-    public ImageView getPressed() {
-        return pressed;
-    }
-
-    public void setGridPane(GridPane gridPane) {
-        this.gridPane = gridPane;
-    }
-
     public void assignFigure(Integer row, Integer column){
 
         String id = pressed.getId().replaceAll(".$", "");
@@ -211,8 +172,16 @@ public class ChessboardController {
                 }
                 break;
 
+            case "pawnBlack":
+                if(pawn.movementBlackPawn(pressedRow, pressedColumn, row, column)){
+                    movementIsPossible = true;
+                }
+                break;
+
             case "bishopWhite":
-                if(bishop.movementWhiteBishop(pressedRow, pressedColumn, row, column)){
+
+            case "bishopBlack":
+                if(bishop.movementBishop(pressedRow, pressedColumn, row, column)){
                     movementIsPossible = true;
                 }
                 break;
@@ -226,13 +195,17 @@ public class ChessboardController {
                 break;
 
             case "rookWhite":
-                if(rook.movementWhiteRook(pressedRow, pressedColumn, row, column)){
+
+            case "rookBlack":
+                if(rook.movementRook(pressedRow, pressedColumn, row, column)){
                     movementIsPossible = true;
                 }
                 break;
 
             case "queenWhite":
-                if(queen.movementWhiteQueen(pressedRow, pressedColumn, row, column)){
+
+            case "queenBlack":
+                if(queen.movementQueen(pressedRow, pressedColumn, row, column)){
                     movementIsPossible = true;
                 }
                 break;
@@ -244,31 +217,54 @@ public class ChessboardController {
                     movementIsPossible = true;
                 }
                 break;
-
-            case "pawnBlack":
-                if(pawn.movementBlackPawn(pressedRow, pressedColumn, row, column)){
-                    movementIsPossible = true;
-                }
-                break;
-
-            case "bishopBlack":
-                if(bishop.movementBlackBishop(pressedRow, pressedColumn, row, column)){
-                    movementIsPossible = true;
-                }
-                break;
-
-            case "rookBlack":
-                if(rook.movementBlackRook(pressedRow, pressedColumn, row, column)){
-                    movementIsPossible = true;
-                }
-                break;
-
-            case "queenBlack":
-                if(queen.movementBlackQueen(pressedRow, pressedColumn, row, column)){
-                    movementIsPossible = true;
-                }
-                break;
         }
     }
 
+    public void moveFigure(Integer row, Integer column){
+
+        GridPane.setRowIndex(pressed, row);
+        GridPane.setColumnIndex(pressed, column);
+        isPressed = false;
+        pressed = null;
+        movementIsPossible = false;
+    }
+
+    public static Integer checkInteger(Integer num){
+        if(num == null){
+            num = 0;
+        }
+        return num;
+    }
+
+    public void replaceImageToUnselected(){
+        String name = pressed.getId().replaceAll(".$", "");
+        pressed.setImage(new Image(String.valueOf(this.getClass().getResource("/com/example/pcgf/images/" + name + ".png"))));
+    }
+
+    public void replaceImageToSelected(){
+        String name = pressed.getId().replaceAll(".$", "");
+        name += "Selected";
+        pressed.setImage(new Image(String.valueOf(this.getClass().getResource("/com/example/pcgf/images/" + name + ".png"))));
+    }
+
+    public void unselectFigure(){
+        isPressed = false;
+        pressed = null;
+    }
+
+    public GridPane getGridPane() {
+        return gridPane;
+    }
+
+    public static String getColumnIndex() {
+        return checkInteger(GridPane.getColumnIndex((Node) me.getSource())).toString();
+    }
+
+    public static String getRowIndex() {
+        return checkInteger(GridPane.getRowIndex((Node) me.getSource())).toString();
+    }
+
+    public ImageView getPressed() {
+        return pressed;
+    }
 }

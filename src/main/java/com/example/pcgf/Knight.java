@@ -17,8 +17,4 @@ public class Knight {
             return false;
         }
     }
-
-    /*public boolean movementBlackKnight(Integer pressedRow, Integer pressedColumn, Integer row, Integer column) {
-        return true;
-    }*/
 }

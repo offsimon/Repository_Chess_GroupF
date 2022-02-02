@@ -1,14 +1,23 @@
 package com.example.pcgf;
 
+import javafx.scene.Node;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.GridPane;
 
 public class Rook {
 
-    public boolean movementWhiteRook(Integer pressedRow, Integer pressedColumn, Integer row, Integer column){
+    public boolean movementRook(Integer pressedRow, Integer pressedColumn, Integer row, Integer column){
+        if(pressedRow == row || pressedColumn == column){
+
+           /* for (int i = 0; i < ; i++) {
+                
+            }
+            for (Node n : gridPane.getChildren()) {
+
+
+            }*/
+        }
         return true;
     }
 
-    public boolean movementBlackRook(Integer pressedRow, Integer pressedColumn, Integer row, Integer column) {
-        return true;
-    }
 }

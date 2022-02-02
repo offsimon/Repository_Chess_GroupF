@@ -1,14 +1,16 @@
 package com.example.pcgf;
 
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.GridPane;
 
 public class Queen {
 
-    public boolean movementWhiteQueen(Integer pressedRow, Integer pressedColumn, Integer row, Integer column){
-        return true;
-    }
+    //private GridPane gridPane = ChessboardController.gridPane;
 
-    public boolean movementBlackQueen(Integer pressedRow, Integer pressedColumn, Integer row, Integer column) {
-        return true;
+    public boolean movementQueen(Integer pressedRow, Integer pressedColumn, Integer row, Integer column){
+
+
+
+        return false;
     }
 }
