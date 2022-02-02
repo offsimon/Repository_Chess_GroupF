@@ -61,7 +61,7 @@ public class ChessboardController {
     private Rectangle pressedRec = null;
     private static MouseEvent me = null;
     private static LoginController login;
-    private boolean movementIsPossible = true;
+    private boolean movementIsPossible = false;
 
     public ChessboardController(LoginController loginController) {
         login = loginController;
@@ -74,22 +74,32 @@ public class ChessboardController {
                 pressed = null;
                 isPressed = false;
             } else if (pressed != mouseEvent.getSource() && isPressed) {//figure already selected but not the same == capture figure
+
                 Node n = (Node) mouseEvent.getSource();
                 if(pressed.getId().contains("White") && n.getId().contains("White") || pressed.getId().contains("Black") && n.getId().contains("Black")){ //ensure the player dont capture his own figure
                     replaceImageToUnselected();
                     unselectFigure();
                 }else{
-                    replaceImageToUnselected();
-                    Integer row = GridPane.getRowIndex((Node) mouseEvent.getSource());
-                    row = checkInteger(row);
-                    Integer column = GridPane.getColumnIndex((Node) mouseEvent.getSource());
-                    column = checkInteger(column);
 
-                    for (Node node : gridPane.getChildren()) {
-                        if(node == mouseEvent.getSource()) node.setVisible(false);
+                    assignFigure(checkInteger(GridPane.getRowIndex((Node) mouseEvent.getSource())),checkInteger(GridPane.getColumnIndex((Node) mouseEvent.getSource())));
+                    if(movementIsPossible){
+                        replaceImageToUnselected();
+                        Integer row = GridPane.getRowIndex((Node) mouseEvent.getSource());
+                        row = checkInteger(row);
+                        Integer column = GridPane.getColumnIndex((Node) mouseEvent.getSource());
+                        column = checkInteger(column);
+
+                        for (Node node : gridPane.getChildren()) {
+                            if(node == mouseEvent.getSource()) node.setVisible(false);
+                        }
+                        moveFigure(row, column);
+                    }else{
+                        replaceImageToUnselected();
+                        unselectFigure();
                     }
-                    moveFigure(row, column);
                 }
+
+
             } else {//no figure selected
                 pressed = (ImageView) mouseEvent.getSource();
                 isPressed = true;
@@ -114,8 +124,7 @@ public class ChessboardController {
                 connectToServerWrite();
             }else{
                 replaceImageToUnselected();
-                isPressed = false;
-                pressed = null;
+                unselectFigure();
             }
         }
     }
@@ -224,8 +233,7 @@ public class ChessboardController {
 
         GridPane.setRowIndex(pressed, row);
         GridPane.setColumnIndex(pressed, column);
-        isPressed = false;
-        pressed = null;
+        unselectFigure();
         movementIsPossible = false;
     }
 
