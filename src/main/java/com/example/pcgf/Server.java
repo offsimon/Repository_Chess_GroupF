@@ -10,8 +10,8 @@ public class Server
     private static Socket fromClient;
     private static int count = 0;
 
-    public static void main(String[] args)
-    {
+    public static void main(String[] args)    {
+
         try {
             serverSocket = new ServerSocket(7543);
         } catch (IOException e) {
@@ -41,8 +41,9 @@ public class Server
                         streamToClient = new ObjectOutputStream(fromClient.getOutputStream());
                         try{
                             System.out.println("--------------");
-                            System.out.println((String) streamFromClient.readObject());
-                            streamToClient.writeObject(streamFromClient.readObject());
+                            String readFromClient = (String) streamFromClient.readObject();
+                            System.out.println(readFromClient);
+                            streamToClient.writeObject(readFromClient);
                         }catch (Exception e){
                             System.out.println("NULL");
                         }

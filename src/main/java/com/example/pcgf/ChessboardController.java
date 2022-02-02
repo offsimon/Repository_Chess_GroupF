@@ -16,7 +16,6 @@ import java.net.Socket;
 public class ChessboardController {
 
     public GridPane gridPane;
-    public Rectangle r5c0;
     public ImageView pawnWhite1;
     public ImageView pawnBlack1;
     public ImageView pawnBlack2;
@@ -49,7 +48,13 @@ public class ChessboardController {
     public ImageView bishopWhite2;
     public ImageView queenWhite;
     public ImageView kingWhite;
-    public Rectangle r6c0;
+
+    Pawn pawn = new Pawn();
+    Bishop bishop = new Bishop();
+    Knight knight = new Knight();
+    Rook rook = new Rook();
+    Queen queen = new Queen();
+    King king = new King();
 
     private boolean isPressed = false;
     private ImageView pressed = null;
@@ -61,80 +66,96 @@ public class ChessboardController {
         login = loginController;
     }
 
-    public void selectFigure(MouseEvent mouseEvent) {
+    public void figureOnClick(MouseEvent mouseEvent) {
         me = mouseEvent;
         if (pressed == mouseEvent.getSource() && isPressed) {//same figure selected again
-            String name = pressed.getId().replaceAll(".$", "");
-            pressed.setImage(new Image(String.valueOf(this.getClass().getResource("/com/example/pcgf/images/" + name + ".png"))));
+            replaceImageToUnselected();
             pressed = null;
             isPressed = false;
         } else if (pressed != mouseEvent.getSource() && isPressed) {//figure already selected but not the same == capture figure
 
-            String name = pressed.getId().replaceAll(".$", "");
-            pressed.setImage(new Image(String.valueOf(this.getClass().getResource("/com/example/pcgf/images/" + name + ".png"))));
+            replaceImageToUnselected();
             Integer row = GridPane.getRowIndex((Node) mouseEvent.getSource());
-            if(row == null){row = 0;}
+            row = checkRow(row);
             Integer column = GridPane.getColumnIndex((Node) mouseEvent.getSource());
-            if(column == null){column = 0;}
+            column = checkColumn(column);
 
             for (Node node : gridPane.getChildren()) {
                 if(node == mouseEvent.getSource()) node.setVisible(false);
             }
-            GridPane.setRowIndex(pressed, row);
-            GridPane.setColumnIndex(pressed, column);
-
-            pressed = null;
-            isPressed = false;
-
-
+            moveFigure(row, column);
         } else {//no figure selected
-
             pressed = (ImageView) mouseEvent.getSource();
             isPressed = true;
-            String name = pressed.getId().replaceAll(".$", "");
-            name += "Selected";
-            pressed.setImage(new Image(String.valueOf(this.getClass().getResource("/com/example/pcgf/images/" + name + ".png"))));
-
+            replaceImageToSelected();
             connectToServerWrite();
         }
     }
 
-    public void moveFigure(MouseEvent mouseEvent) {
+    public void fieldOnClick(MouseEvent mouseEvent) {
         me = mouseEvent;
         if (isPressed && pressed != null) {
             Integer row = GridPane.getRowIndex((Node) mouseEvent.getSource());
-            if (row == null) {
-                row = 0;
-            }
+            row = checkRow(row);
 
             Integer column = GridPane.getColumnIndex((Node) mouseEvent.getSource());
-            if (column == null) {
-                column = 0;
-            }
+            column = checkColumn(column);
 
-            GridPane.setRowIndex(pressed, row);
-            GridPane.setColumnIndex(pressed, column);
+            replaceImageToUnselected();
 
-            String name = pressed.getId().replaceAll(".$", "");
-            pressed.setImage(new Image(String.valueOf(this.getClass().getResource("/com/example/pcgf/images/" + name + ".png"))));
-
-
-            isPressed = false;
-            pressed = null;
+            moveFigure(row, column);
             connectToServerWrite();
         }
+    }
+
+    public void moveFigure(Integer row, Integer column){
+        GridPane.setRowIndex(pressed, row);
+        GridPane.setColumnIndex(pressed, column);
+        isPressed = false;
+        pressed = null;
+    }
+
+    public static Integer checkRow(Integer row){
+        if(row == null){
+            row = 0;
+        }
+        return row;
+    }
+
+    public static Integer checkColumn(Integer column){
+        if(column == null){
+            column = 0;
+        }
+        return column;
+    }
+
+
+
+    public void replaceImageToUnselected(){
+        String name = pressed.getId().replaceAll(".$", "");
+        pressed.setImage(new Image(String.valueOf(this.getClass().getResource("/com/example/pcgf/images/" + name + ".png"))));
+    }
+
+    public void replaceImageToSelected(){
+        String name = pressed.getId().replaceAll(".$", "");
+        name += "Selected";
+        pressed.setImage(new Image(String.valueOf(this.getClass().getResource("/com/example/pcgf/images/" + name + ".png"))));
     }
 
     public static void connectToServerWrite() {
         String ipAddress = login.getIpAddress();
         ObjectOutputStream streamToServer;
-        BufferedReader streamFromServer;
+        ObjectInputStream streamFromServer;
         Socket toServer;
+
         try{
             String name;
             toServer = new Socket(ipAddress,7543);
             streamToServer = new ObjectOutputStream(toServer.getOutputStream());
             streamToServer.writeObject(getRowIndex() +":"+getColumnIndex());
+            streamFromServer = new ObjectInputStream(toServer.getInputStream());
+            String readFromServer = (String) streamFromServer.readObject();
+            System.out.println(readFromServer);
         }
         catch(Exception e)
         {
@@ -142,46 +163,86 @@ public class ChessboardController {
         }
     }
 
-    public static Integer[] connectToServerRead(){
+    public static void connectToServerRead() {
         String ipAddress = login.getIpAddress();
         ObjectInputStream streamFromServer;
         Socket toServer;
-        Integer row = null;
-        Integer column = null;
         try{
             String name;
-            toServer = new Socket(ipAddress, 7543);
+            toServer = new Socket(ipAddress,7543);
             streamFromServer = new ObjectInputStream(toServer.getInputStream());
             String readFromServer = (String) streamFromServer.readObject();
+            System.out.println(readFromServer);
             String[] split = readFromServer.split(":");
-            row = Integer.valueOf(split[0]);
-            column = Integer.valueOf(split[1]);
-        }catch(Exception e){
+
+        }
+        catch(Exception e)
+        {
             e.printStackTrace();
         }
-        return new Integer[]{row, column};
     }
 
     public static String getColumnIndex() {
-        return GridPane.getColumnIndex((Node) me.getSource()).toString();
+        return checkColumn(GridPane.getColumnIndex((Node) me.getSource())).toString();
     }
 
     public static String getRowIndex() {
-        return GridPane.getRowIndex((Node) me.getSource()).toString();
+        return checkRow(GridPane.getRowIndex((Node) me.getSource())).toString();
     }
 
+    public void assignFigure(Integer row, Integer column){
 
-    /*public Node getNodeByRowColumnIndex (final int row, final int column, GridPane gridPane) {
-        Node result = null;
-        ObservableList<Node> childrens = gridPane.getChildren();
+        String id = pressed.getId().replaceAll(".$", "");
 
-        for (Node node : childrens) {
-            if(gridPane.getRowIndex(node) == row && gridPane.getColumnIndex(node) == column) {
-                result = node;
+        switch(id){
+            case "pawnWhite":
+                pawn.movementWhitePawn(row, column, pressed);
                 break;
-            }
-        }
 
-        return result;
-    }*/
+            case "bishopWhite":
+                bishop.movementWhiteBishop(row, column, pressed);
+                break;
+
+            case "knightWhite":
+                knight.movementWhiteKnight(row, column, pressed);
+                break;
+
+            case "rookWhite":
+                rook.movementWhiteRook(row, column, pressed);
+                break;
+
+            case "queenWhite":
+                queen.movementWhiteQueen(row, column, pressed);
+                break;
+
+            case "kingWhite":
+                king.movementWhiteKing(row, column, pressed);
+                break;
+
+            case "pawnBlack":
+                pawn.movementBlackPawn(row, column, pressed);
+                break;
+
+            case "bishopBlack":
+                bishop.movementBlackBishop(row, column, pressed);
+                break;
+
+            case "knightBlack":
+                knight.movementBlackKnight(row, column, pressed);
+                break;
+
+            case "rookBlack":
+                rook.movementBlackRook(row, column, pressed);
+                break;
+
+            case "queenBlack":
+                queen.movementBlackQueen(row, column, pressed);
+                break;
+
+            case "kingBlack":
+                king.movementBlackKing(row, column, pressed);
+                break;
+        }
+    }
+
 }
