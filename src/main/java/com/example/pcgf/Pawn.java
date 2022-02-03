@@ -17,13 +17,20 @@ public class Pawn{
         if(pressedColumn == column){
 
             for (Node n : cc.getGridPane().getChildren()) {
-                if(GridPane.getRowIndex(n) == row && GridPane.getColumnIndex(n) == column && n instanceof ImageView){
+                if(cc.checkInteger(GridPane.getRowIndex(n)) == row && cc.checkInteger(GridPane.getColumnIndex(n)) == column && n instanceof ImageView){
                     return false;
                 }
             }
 
             if(pressedRow == 6 && pressedRow-2 == row || pressedRow-1 == row){
                 return true;
+            }
+        }else if(pressedColumn+1 == column && pressedRow-1 == row || pressedColumn-1 == column && pressedRow-1 == row){
+
+            for (Node n : cc.getGridPane().getChildren()) {
+                if(cc.checkInteger(GridPane.getRowIndex(n)) == row && cc.checkInteger(GridPane.getColumnIndex(n)) == column && n instanceof ImageView){
+                    return true;
+                }
             }
         }
         return false;
@@ -41,6 +48,13 @@ public class Pawn{
 
             if(pressedRow == 1 && pressedRow+2 == row || pressedRow+1 == row){
                 return true;
+            }
+        }else if(pressedColumn+1 == column && pressedRow+1 == row || pressedColumn-1 == column && pressedRow+1 == row){
+
+            for (Node n : cc.getGridPane().getChildren()) {
+                if(cc.checkInteger(GridPane.getRowIndex(n)) == row && cc.checkInteger(GridPane.getColumnIndex(n)) == column && n instanceof ImageView){
+                    return true;
+                }
             }
         }
         return false;
