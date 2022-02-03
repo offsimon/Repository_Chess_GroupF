@@ -1,16 +1,28 @@
 package com.example.pcgf;
 
+import javafx.scene.Node;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.GridPane;
 
 public class Pawn{
 
+    ChessboardController cc;
+
+    public Pawn(ChessboardController cc) {
+        this.cc = cc;
+    }
+
     public boolean movementWhitePawn(Integer pressedRow, Integer pressedColumn, Integer row, Integer column){
-        if(pressedRow == 6){
-            if(pressedRow - 1 == row && pressedColumn == column || pressedRow - 2 == row && pressedColumn == column){
-                return true;
+
+        if(pressedColumn == column){
+
+            for (Node n : cc.getGridPane().getChildren()) {
+                if(GridPane.getRowIndex(n) == row && GridPane.getColumnIndex(n) == column && n instanceof ImageView){
+                    return false;
+                }
             }
-        }else{
-            if(pressedRow - 1 == row && pressedColumn == column){
+
+            if(pressedRow == 6 && pressedRow-2 == row || pressedRow-1 == row){
                 return true;
             }
         }
@@ -18,15 +30,18 @@ public class Pawn{
     }
 
     public boolean movementBlackPawn(Integer pressedRow, Integer pressedColumn, Integer row, Integer column) {
-        if(pressedRow == 1){
-            if (pressedRow + 1 == row && pressedColumn == column || pressedRow + 2 == row && pressedColumn == column){
-                return true;
+
+        if(pressedColumn == column){
+
+            for (Node n : cc.getGridPane().getChildren()) {
+                if(GridPane.getRowIndex(n) == row && GridPane.getColumnIndex(n) == column && n instanceof ImageView){
+                    return false;
+                }
             }
 
-        }else{
-             if(pressedRow + 1 == row && pressedColumn == column){
-                 return true;
-             }
+            if(pressedRow == 1 && pressedRow+2 == row || pressedRow+1 == row){
+                return true;
+            }
         }
         return false;
     }

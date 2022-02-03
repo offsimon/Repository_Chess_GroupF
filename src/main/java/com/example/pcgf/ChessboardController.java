@@ -49,10 +49,10 @@ public class ChessboardController {
     public ImageView queenWhite;
     public ImageView kingWhite;
 
-    Pawn pawn = new Pawn();
+    Pawn pawn = new Pawn(this);
     Bishop bishop = new Bishop();
     Knight knight = new Knight();
-    Rook rook = new Rook();
+    Rook rook = new Rook(this);
     Queen queen = new Queen();
     King king = new King();
 
