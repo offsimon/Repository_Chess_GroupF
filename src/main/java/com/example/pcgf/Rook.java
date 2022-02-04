@@ -14,70 +14,68 @@ public class Rook {
 
     public boolean movementRook(Integer pressedRow, Integer pressedColumn, Integer row, Integer column) {
 
-        Integer checkedRow;
-        Integer checkedColumn;
-
         if (pressedRow == row) {
             if (pressedColumn < column) {
-                //GO RIGHT
-                for (int i = pressedColumn + 1; i <= column; i++) {
-                    for (Node n : cc.getGridPane().getChildren()) {
-                        checkedRow = cc.checkInteger(GridPane.getRowIndex(n));
-                        checkedColumn = cc.checkInteger(GridPane.getColumnIndex(n));
-                        if (checkedRow == row && checkedColumn == column) {
-                            return true;
-                        } else if (checkedRow == pressedRow && checkedColumn == i && n instanceof ImageView) {
-                            return false;
+                //MOVE RIGHT
+                for (Node n : cc.getGridPane().getChildren()) {
+                    if(n instanceof ImageView){
+                        Integer checkedRow = cc.checkInteger(GridPane.getRowIndex(n));
+                        Integer checkedColumn = cc.checkInteger(GridPane.getColumnIndex(n));
+                        if (checkedRow == row) {
+                            if (checkedColumn > pressedColumn && checkedColumn < column) {
+                                return false;
+                            }
                         }
                     }
-
                 }
+                return true;
             } else {
-                //GO LEFT
-                for (int i = pressedColumn - 1; i >= column; i--) {
-                    for (Node n : cc.getGridPane().getChildren()) {
-                        checkedRow = cc.checkInteger(GridPane.getRowIndex(n));
-                        checkedColumn = cc.checkInteger(GridPane.getColumnIndex(n));
-                        if (checkedRow == row && checkedColumn == column) {
-                            return true;
-                        } else if (checkedRow == pressedRow && checkedColumn == i && n instanceof ImageView) {
-                            return false;
+                //MOVE LEFT
+                for (Node n : cc.getGridPane().getChildren()) {
+                    if(n instanceof ImageView){
+                        Integer checkedRow = cc.checkInteger(GridPane.getRowIndex(n));
+                        Integer checkedColumn = cc.checkInteger(GridPane.getColumnIndex(n));
+                        if (checkedRow == row) {
+                            if (checkedColumn < pressedColumn && checkedColumn > column) {
+                                return false;
+                            }
                         }
                     }
                 }
+                return true;
             }
         } else if (pressedColumn == column) {
             if (pressedRow < row) {
-                //GO DOWN
-                for (int i = pressedRow + 1; i <= row; i++) {
-                    for (Node n : cc.getGridPane().getChildren()) {
-                        checkedRow = cc.checkInteger(GridPane.getRowIndex(n));
-                        checkedColumn = cc.checkInteger(GridPane.getColumnIndex(n));
-                        if (checkedRow == row && checkedColumn == column) {
-                            return true;
-                        } else if (checkedRow == i && checkedColumn == pressedColumn && n instanceof ImageView) {
-                            return false;
+                //MOVE DOWN
+                for (Node n : cc.getGridPane().getChildren()) {
+                    if(n instanceof ImageView){
+                        Integer checkedRow = cc.checkInteger(GridPane.getRowIndex(n));
+                        Integer checkedColumn = cc.checkInteger(GridPane.getColumnIndex(n));
+                        if (checkedColumn == column) {
+                            if (checkedRow > pressedRow && checkedRow < row) {
+                                return false;
+                            }
                         }
                     }
                 }
+                return true;
             } else {
-                //GO UP
-                for (int i = pressedRow - 1; i >= row; i--) {
-                    for (Node n : cc.getGridPane().getChildren()) {
-                        checkedRow = cc.checkInteger(GridPane.getRowIndex(n));
-                        checkedColumn = cc.checkInteger(GridPane.getColumnIndex(n));
-                        if (checkedRow == row && checkedColumn == column) {
-                            return true;
-                        } else if (checkedRow == i && checkedColumn == pressedColumn && n instanceof ImageView) {
-                            return false;
+                //MOVE UP
+                for (Node n : cc.getGridPane().getChildren()) {
+                    if(n instanceof ImageView){
+                        Integer checkedRow = cc.checkInteger(GridPane.getRowIndex(n));
+                        Integer checkedColumn = cc.checkInteger(GridPane.getColumnIndex(n));
+                        if (checkedColumn == column) {
+                            if (checkedRow < pressedRow && checkedRow > row) {
+                                return false;
+                            }
                         }
                     }
                 }
+                return true;
             }
-        } else {
-            return false;
         }
-        return true;
-    }
 
+        return false;
+    }
 }
