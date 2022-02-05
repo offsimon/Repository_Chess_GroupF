@@ -50,10 +50,10 @@ public class ChessboardController {
     public ImageView kingWhite;
 
     Pawn pawn = new Pawn(this);
-    Bishop bishop = new Bishop();
+    Bishop bishop = new Bishop(this);
     Knight knight = new Knight();
     Rook rook = new Rook(this);
-    Queen queen = new Queen();
+    Queen queen = new Queen(this);
     King king = new King();
 
     private boolean isPressed = false;
@@ -69,43 +69,46 @@ public class ChessboardController {
 
     public void figureOnClick(MouseEvent mouseEvent) {
         me = mouseEvent;
-            if (pressed == mouseEvent.getSource() && isPressed) {//same figure selected again
-                replaceImageToUnselected();
-                pressed = null;
-                isPressed = false;
-            } else if (pressed != mouseEvent.getSource() && isPressed) {//figure already selected but not the same == capture figure
+        if (pressed == mouseEvent.getSource() && isPressed) {//same figure selected again
+            replaceImageToUnselected();
+            pressed = null;
+            isPressed = false;
+        } else if (pressed != mouseEvent.getSource() && isPressed) {//figure already selected but not the same == capture figure
 
-                Node n = (Node) mouseEvent.getSource();
-                if(pressed.getId().contains("White") && n.getId().contains("White") || pressed.getId().contains("Black") && n.getId().contains("Black")){ //ensure the player dont capture his own figure
+            Node n = (Node) mouseEvent.getSource();
+            if (pressed.getId().contains("White") && n.getId().contains("White") || pressed.getId().contains("Black") && n.getId().contains("Black")) { //ensure the player dont capture his own figure
+                replaceImageToUnselected();
+                unselectFigure();
+            } else {
+
+                assignFigure(checkInteger(GridPane.getRowIndex((Node) mouseEvent.getSource())), checkInteger(GridPane.getColumnIndex((Node) mouseEvent.getSource())));
+                if (movementIsPossible) {
+                    replaceImageToUnselected();
+                    Integer row = GridPane.getRowIndex((Node) mouseEvent.getSource());
+                    row = checkInteger(row);
+                    Integer column = GridPane.getColumnIndex((Node) mouseEvent.getSource());
+                    column = checkInteger(column);
+
+                    for (Node node : gridPane.getChildren()) {
+                        if (node == mouseEvent.getSource()) { /*node.setVisible(false)*/
+                            node.setVisible(false);
+                            node.setId(null);
+                        }
+                    }
+                    moveFigure(row, column);
+                } else {
                     replaceImageToUnselected();
                     unselectFigure();
-                }else{
-
-                    assignFigure(checkInteger(GridPane.getRowIndex((Node) mouseEvent.getSource())),checkInteger(GridPane.getColumnIndex((Node) mouseEvent.getSource())));
-                    if(movementIsPossible){
-                        replaceImageToUnselected();
-                        Integer row = GridPane.getRowIndex((Node) mouseEvent.getSource());
-                        row = checkInteger(row);
-                        Integer column = GridPane.getColumnIndex((Node) mouseEvent.getSource());
-                        column = checkInteger(column);
-
-                        for (Node node : gridPane.getChildren()) {
-                            if(node == mouseEvent.getSource()) node.setVisible(false);
-                        }
-                        moveFigure(row, column);
-                    }else{
-                        replaceImageToUnselected();
-                        unselectFigure();
-                    }
                 }
-
-
-            } else {//no figure selected
-                pressed = (ImageView) mouseEvent.getSource();
-                isPressed = true;
-                replaceImageToSelected();
-                connectToServerWrite();
             }
+
+
+        } else {//no figure selected
+            pressed = (ImageView) mouseEvent.getSource();
+            isPressed = true;
+            replaceImageToSelected();
+            connectToServerWrite();
+        }
     }
 
     public void fieldOnClick(MouseEvent mouseEvent) {
@@ -118,33 +121,32 @@ public class ChessboardController {
             column = checkInteger(column);
 
             assignFigure(row, column);
-            if(movementIsPossible){
+            if (movementIsPossible) {
                 replaceImageToUnselected();
                 moveFigure(row, column);
                 connectToServerWrite();
-            }else{
+            } else {
                 replaceImageToUnselected();
                 unselectFigure();
             }
         }
     }
+
     public static void connectToServerWrite() {
         String ipAddress = login.getIpAddress();
         ObjectOutputStream streamToServer;
         ObjectInputStream streamFromServer;
         Socket toServer;
 
-        try{
+        try {
             String name;
-            toServer = new Socket(ipAddress,7543);
+            toServer = new Socket(ipAddress, 7543);
             streamToServer = new ObjectOutputStream(toServer.getOutputStream());
-            streamToServer.writeObject(getRowIndex() +":"+getColumnIndex());
+            streamToServer.writeObject(getRowIndex() + ":" + getColumnIndex());
             streamFromServer = new ObjectInputStream(toServer.getInputStream());
             String readFromServer = (String) streamFromServer.readObject();
             System.out.println(readFromServer);
-        }
-        catch(Exception e)
-        {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -153,36 +155,34 @@ public class ChessboardController {
         String ipAddress = login.getIpAddress();
         ObjectInputStream streamFromServer;
         Socket toServer;
-        try{
+        try {
             String name;
-            toServer = new Socket(ipAddress,7543);
+            toServer = new Socket(ipAddress, 7543);
             streamFromServer = new ObjectInputStream(toServer.getInputStream());
             String readFromServer = (String) streamFromServer.readObject();
             System.out.println(readFromServer);
             String[] split = readFromServer.split(":");
 
-        }
-        catch(Exception e)
-        {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    public void assignFigure(Integer row, Integer column){
+    public void assignFigure(Integer row, Integer column) {
 
         String id = pressed.getId().replaceAll(".$", "");
         Integer pressedRow = checkInteger(GridPane.getRowIndex(pressed));
         Integer pressedColumn = checkInteger(GridPane.getColumnIndex(pressed));
 
-        switch(id){
+        switch (id) {
             case "pawnWhite":
-                if(pawn.movementWhitePawn(pressedRow, pressedColumn, row, column)){
+                if (pawn.movementWhitePawn(pressedRow, pressedColumn, row, column)) {
                     movementIsPossible = true;
                 }
                 break;
 
             case "pawnBlack":
-                if(pawn.movementBlackPawn(pressedRow, pressedColumn, row, column)){
+                if (pawn.movementBlackPawn(pressedRow, pressedColumn, row, column)) {
                     movementIsPossible = true;
                 }
                 break;
@@ -190,7 +190,7 @@ public class ChessboardController {
             case "bishopWhite":
 
             case "bishopBlack":
-                if(bishop.movementBishop(pressedRow, pressedColumn, row, column)){
+                if (bishop.movementBishop(pressedRow, pressedColumn, row, column)) {
                     movementIsPossible = true;
                 }
                 break;
@@ -198,7 +198,7 @@ public class ChessboardController {
             case "knightWhite":
 
             case "knightBlack":
-                if(knight.movementKnight(pressedRow, pressedColumn, row, column)){
+                if (knight.movementKnight(pressedRow, pressedColumn, row, column)) {
                     movementIsPossible = true;
                 }
                 break;
@@ -206,7 +206,7 @@ public class ChessboardController {
             case "rookWhite":
 
             case "rookBlack":
-                if(rook.movementRook(pressedRow, pressedColumn, row, column)){
+                if (rook.movementRook(pressedRow, pressedColumn, row, column)) {
                     movementIsPossible = true;
                 }
                 break;
@@ -214,22 +214,26 @@ public class ChessboardController {
             case "queenWhite":
 
             case "queenBlack":
-                if(queen.movementQueen(pressedRow, pressedColumn, row, column)){
+                if (queen.movementQueen(pressedRow, pressedColumn, row, column)) {
                     movementIsPossible = true;
                 }
                 break;
 
             case "kingWhite":
+                if(king.movementWhiteKing(pressedRow, pressedColumn, row, column)){
+                    movementIsPossible = true;
+                }
+                break;
 
             case "kingBlack":
-                if(king.movementKing(pressedRow, pressedColumn, row, column)){
+                if (king.movementBlackKing(pressedRow, pressedColumn, row, column)) {
                     movementIsPossible = true;
                 }
                 break;
         }
     }
 
-    public void moveFigure(Integer row, Integer column){
+    public void moveFigure(Integer row, Integer column) {
 
         GridPane.setRowIndex(pressed, row);
         GridPane.setColumnIndex(pressed, column);
@@ -237,25 +241,25 @@ public class ChessboardController {
         movementIsPossible = false;
     }
 
-    public static Integer checkInteger(Integer num){
-        if(num == null){
+    public static Integer checkInteger(Integer num) {
+        if (num == null) {
             num = 0;
         }
         return num;
     }
 
-    public void replaceImageToUnselected(){
+    public void replaceImageToUnselected() {
         String name = pressed.getId().replaceAll(".$", "");
         pressed.setImage(new Image(String.valueOf(this.getClass().getResource("/com/example/pcgf/images/" + name + ".png"))));
     }
 
-    public void replaceImageToSelected(){
+    public void replaceImageToSelected() {
         String name = pressed.getId().replaceAll(".$", "");
         name += "Selected";
         pressed.setImage(new Image(String.valueOf(this.getClass().getResource("/com/example/pcgf/images/" + name + ".png"))));
     }
 
-    public void unselectFigure(){
+    public void unselectFigure() {
         isPressed = false;
         pressed = null;
     }

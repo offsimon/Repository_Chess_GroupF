@@ -18,7 +18,7 @@ public class Rook {
             if (pressedColumn < column) {
                 //MOVE RIGHT
                 for (Node n : cc.getGridPane().getChildren()) {
-                    if(n instanceof ImageView){
+                    if(n.getId() != null){
                         Integer checkedRow = cc.checkInteger(GridPane.getRowIndex(n));
                         Integer checkedColumn = cc.checkInteger(GridPane.getColumnIndex(n));
                         if (checkedRow == row) {
@@ -32,7 +32,7 @@ public class Rook {
             } else {
                 //MOVE LEFT
                 for (Node n : cc.getGridPane().getChildren()) {
-                    if(n instanceof ImageView){
+                    if(n.getId() != null){
                         Integer checkedRow = cc.checkInteger(GridPane.getRowIndex(n));
                         Integer checkedColumn = cc.checkInteger(GridPane.getColumnIndex(n));
                         if (checkedRow == row) {
@@ -48,7 +48,7 @@ public class Rook {
             if (pressedRow < row) {
                 //MOVE DOWN
                 for (Node n : cc.getGridPane().getChildren()) {
-                    if(n instanceof ImageView){
+                    if(n.getId() != null){
                         Integer checkedRow = cc.checkInteger(GridPane.getRowIndex(n));
                         Integer checkedColumn = cc.checkInteger(GridPane.getColumnIndex(n));
                         if (checkedColumn == column) {
@@ -62,7 +62,7 @@ public class Rook {
             } else {
                 //MOVE UP
                 for (Node n : cc.getGridPane().getChildren()) {
-                    if(n instanceof ImageView){
+                    if(n.getId() != null){
                         Integer checkedRow = cc.checkInteger(GridPane.getRowIndex(n));
                         Integer checkedColumn = cc.checkInteger(GridPane.getColumnIndex(n));
                         if (checkedColumn == column) {
