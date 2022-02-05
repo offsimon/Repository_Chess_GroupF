@@ -29,7 +29,7 @@ public class LoginController {
             loader.setControllerFactory(call -> new ChessboardController(this));
             chessboard.setResizable(false);
             chessboard.setTitle("Chess");
-            chessboard.setScene(new Scene(loader.load(), 670, 670));
+            chessboard.setScene(new Scene(loader.load()));
             chessboard.show();
         }catch(Exception ex){
             ex.printStackTrace();
