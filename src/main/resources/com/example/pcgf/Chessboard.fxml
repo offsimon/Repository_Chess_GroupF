@@ -356,5 +356,15 @@
             <Font size="50.0" />
          </font>
       </Label>
+      <Label fx:id="whiteChecked" layoutX="205.0" layoutY="87.0" text="Schach!" textFill="#a83535" visible="false">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Label fx:id="blackChecked" layoutX="411.0" layoutY="87.0" text="Schach!" textFill="#a83535" visible="false">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

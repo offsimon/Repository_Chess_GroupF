@@ -15,11 +15,6 @@
          </image>
       </ImageView>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ffffff65" height="318.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="0.0" width="287.0" />
-      <Label layoutX="27.0" layoutY="113.0" text="IP-Address:" visible="false" AnchorPane.leftAnchor="27.0" AnchorPane.topAnchor="113.0">
-         <font>
-            <Font size="16.0" />
-         </font>
-      </Label>
       <TextField fx:id="usernameTextField" layoutX="55.0" layoutY="58.0" prefHeight="36.0" prefWidth="177.0" promptText="Enter username" AnchorPane.rightAnchor="277.0" AnchorPane.topAnchor="58.0">
          <font>
             <Font size="15.0" />
@@ -36,11 +31,6 @@
          <font>
             <Font size="15.0" />
          </font></Button>
-      <Label layoutX="27.0" layoutY="63.0" text="Username:" visible="false" AnchorPane.leftAnchor="27.0" AnchorPane.topAnchor="63.0">
-         <font>
-            <Font size="16.0" />
-         </font>
-      </Label>
    </children>
    <effect>
       <Blend />

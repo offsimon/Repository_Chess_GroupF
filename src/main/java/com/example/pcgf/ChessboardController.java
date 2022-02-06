@@ -51,6 +51,8 @@ public class ChessboardController {
     public ImageView kingWhite;
     public Label serverUsername;
     public Label clientUsername;
+    public Label whiteChecked;
+    public Label blackChecked;
 
     Pawn pawn = new Pawn(this);
     Bishop bishop = new Bishop(this);
@@ -100,12 +102,19 @@ public class ChessboardController {
                     column = checkInteger(column);
 
                     for (Node node : gridPane.getChildren()) {
-                        if (node == mouseEvent.getSource()) { /*node.setVisible(false)*/
-                            node.setVisible(false);
-                            node.setId(null);
+                        if (node == mouseEvent.getSource()) {
+                            if(!node.getId().startsWith("king")){//king cant be captured
+                                node.setVisible(false);
+                                node.setId(null);
+                            }else{
+                                movementIsPossible = false;
+                            }
+
                         }
                     }
-                    moveFigure(row, column);
+                    if(movementIsPossible){
+                        moveFigure(row, column);
+                    }
                 } else {
                     replaceImageToUnselected();
                     unselectFigure();
@@ -245,10 +254,52 @@ public class ChessboardController {
 
     public void moveFigure(Integer row, Integer column) {
 
+        if(whiteChecked.isVisible() ||blackChecked.isVisible()){
+            whiteChecked.setVisible(false);
+            blackChecked.setVisible(false);
+        }
+
         GridPane.setRowIndex(pressed, row);
         GridPane.setColumnIndex(pressed, column);
+        isKingChecked();
         unselectFigure();
         movementIsPossible = false;
+    }
+
+    public void isKingChecked(){
+        if(pressed.getId().contains("White")){
+            for (Node n : gridPane.getChildren()) {
+                if(n.getId() != null){
+                    if(n.getId().startsWith("kingBlack")){
+                        Integer r = checkInteger(GridPane.getRowIndex(n));
+                        Integer c = checkInteger(GridPane.getColumnIndex(n));
+                        movementIsPossible = false;
+                        assignFigure(r, c);
+                        if(movementIsPossible){
+                            blackChecked.setVisible(true);
+                        }
+                        movementIsPossible = false;
+                    }
+                }
+            }
+
+        }else{
+            for (Node n : gridPane.getChildren()) {
+                if(n.getId() != null){
+                    if(n.getId().contains("kingWhite")){
+                        Integer r = checkInteger(GridPane.getRowIndex(n));
+                        Integer c = checkInteger(GridPane.getColumnIndex(n));
+                        movementIsPossible = false;
+                        assignFigure(r, c);
+                        if(movementIsPossible){
+                            whiteChecked.setVisible(true);
+                        }
+                        movementIsPossible = false;
+                    }
+
+                }
+            }
+        }
     }
 
     public static Integer checkInteger(Integer num) {

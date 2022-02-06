@@ -17,6 +17,13 @@ public class Main extends Application {
         primaryStage.setScene(new Scene(root.load()));
         primaryStage.show();
 
+        /*FXMLLoader root = new FXMLLoader(getClass().getResource("WaitingLounge.fxml"));
+        root.setControllerFactory(call -> new LoginController());
+        primaryStage.setResizable(false);
+        primaryStage.setTitle("Waiting");
+        primaryStage.setScene(new Scene(root.load()));
+        primaryStage.show();*/
+
     }
 
 
