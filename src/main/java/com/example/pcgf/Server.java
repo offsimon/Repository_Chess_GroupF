@@ -1,60 +1,44 @@
 package com.example.pcgf;
 
+import javafx.scene.layout.GridPane;
+
 import java.io.*;
 import java.net.*;
-public class Server
-{
+import java.util.HashMap;
+import java.util.Map;
+
+public class Server implements Serializable {
     private static ServerSocket serverSocket;
-    private static  ObjectOutputStream streamToClient;
-    private static ObjectInputStream streamFromClient;
     private static Socket fromClient;
     private static int count = 0;
+    private static final Map<String, ObjectInputStream> allReader = new HashMap<>();
+    private static final Map<String, ObjectOutputStream> allWriter = new HashMap<>();
+    private static String gegner = "";
 
-    public static void main(String[] args)    {
+    public static void main(String[] args) {
 
         try {
-            serverSocket = new ServerSocket(7543);
+            serverSocket = new ServerSocket(4711);
         } catch (IOException e) {
             e.printStackTrace();
         }
-        while(true){
+        int num = 1;
+        while (true) {
+            fromClient = null;
             try {
                 fromClient = serverSocket.accept();
-                /*System.out.println("Client connection number "+count);
-                count++;*/
+                String key = num+"";
+                System.out.println("A new client is connected: "+fromClient);
+                ObjectInputStream ois = new ObjectInputStream(fromClient.getInputStream());
+                ObjectOutputStream oos = new ObjectOutputStream(fromClient.getOutputStream());
+
+                Thread t = new MultiClientHandler(key, fromClient, ois, oos);
+                t.start();
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            r();
+            num++;
         }
 
-    }
-
-    private static void r(){
-        Thread thread = new Thread(){
-            public void run(){
-
-                try{
-                    while(true)
-                    {
-                        streamFromClient = new ObjectInputStream(fromClient.getInputStream());
-                        streamToClient = new ObjectOutputStream(fromClient.getOutputStream());
-                        try{
-                            System.out.println("--------------");
-                            String readFromClient = (String) streamFromClient.readObject();
-                            System.out.println(readFromClient);
-                            streamToClient.writeObject(readFromClient);
-                        }catch (Exception e){
-                            System.out.println("NULL");
-                        }
-                    }
-                }
-                catch(Exception e)
-                {
-                    e.printStackTrace();
-                }
-            }
-        };
-        thread.start();
     }
 }

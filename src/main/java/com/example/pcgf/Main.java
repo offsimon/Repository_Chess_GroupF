@@ -11,7 +11,7 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
         FXMLLoader root = new FXMLLoader(getClass().getResource("Login.fxml"));
-        root.setControllerFactory(call -> new LoginController());
+        root.setControllerFactory(call -> new LoginController(null, null));
         primaryStage.setResizable(false);
         primaryStage.setTitle("Connection");
         primaryStage.setScene(new Scene(root.load()));

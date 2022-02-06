@@ -1,6 +1,8 @@
 package com.example.pcgf;
 
+import javafx.event.ActionEvent;
 import javafx.scene.Node;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -8,10 +10,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.shape.Rectangle;
 
-import java.io.BufferedReader;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.io.PrintStream;
+import java.io.*;
 import java.net.Socket;
 
 public class ChessboardController {
@@ -53,6 +52,7 @@ public class ChessboardController {
     public Label clientUsername;
     public Label whiteChecked;
     public Label blackChecked;
+    public Button reloadButton;
 
     Pawn pawn = new Pawn(this);
     Bishop bishop = new Bishop(this);
@@ -67,16 +67,17 @@ public class ChessboardController {
     private static MouseEvent me = null;
     private static LoginController login;
     private boolean movementIsPossible = false;
+    private ObjectOutputStream streamToServer;
+    private ObjectInputStream streamFromServer;
+    private static int count = 0;
+    private static String gegner = "";
 
-    public ChessboardController(LoginController loginController) {
-
+    public ChessboardController(LoginController loginController, ObjectInputStream ois, ObjectOutputStream oos, String username) {
         login = loginController;
-        //serverUsername.setText(login.username);
-        /*if(loginController.isTheServer){
-            serverUsername.setText(login.username);
-        }else{
-            clientUsername.setText(login.username);
-        }*/
+        streamToServer = oos;
+        streamFromServer = ois;
+        // serverUsername.setText(LoginController.getUsername());
+        // clientUsername.setText(LoginController.getUsername());
     }
 
     public void figureOnClick(MouseEvent mouseEvent) {
@@ -126,8 +127,22 @@ public class ChessboardController {
             pressed = (ImageView) mouseEvent.getSource();
             isPressed = true;
             replaceImageToSelected();
-            connectToServerWrite();
+            //connectToServerWrite();
         }
+    }
+
+    public void testClient(){
+        Thread thread = new Thread(() -> {
+            try {
+                gegner = (String) streamFromServer.readObject();
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            }
+        });
+        thread.start();
+        System.out.println(gegner);
     }
 
     public void fieldOnClick(MouseEvent mouseEvent) {
@@ -143,7 +158,7 @@ public class ChessboardController {
             if (movementIsPossible) {
                 replaceImageToUnselected();
                 moveFigure(row, column);
-                connectToServerWrite();
+                //connectToServerWrite();
             } else {
                 replaceImageToUnselected();
                 unselectFigure();
@@ -151,7 +166,7 @@ public class ChessboardController {
         }
     }
 
-    public static void connectToServerWrite() {
+    /*public static void connectToServerWrite() {
         String ipAddress = login.getIpAddress();
         ObjectOutputStream streamToServer;
         ObjectInputStream streamFromServer;
@@ -168,9 +183,9 @@ public class ChessboardController {
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
+    }*/
 
-    public static void connectToServerRead() {
+    /*public static void connectToServerRead() {
         String ipAddress = login.getIpAddress();
         ObjectInputStream streamFromServer;
         Socket toServer;
@@ -185,7 +200,7 @@ public class ChessboardController {
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
+    }*/
 
     public void assignFigure(Integer row, Integer column) {
 
@@ -262,6 +277,18 @@ public class ChessboardController {
         GridPane.setRowIndex(pressed, row);
         GridPane.setColumnIndex(pressed, column);
         isKingChecked();
+
+        //
+        try {
+            /*streamToServer.writeObject(LoginController.getIpAddress());
+            streamToServer.flush();*/
+            streamToServer.writeObject(row+"|"+column);
+            streamToServer.flush();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        //
+
         unselectFigure();
         movementIsPossible = false;
     }
@@ -339,5 +366,9 @@ public class ChessboardController {
 
     public ImageView getPressed() {
         return pressed;
+    }
+
+    public void reloadOnClick(ActionEvent actionEvent) {
+        testClient();
     }
 }
