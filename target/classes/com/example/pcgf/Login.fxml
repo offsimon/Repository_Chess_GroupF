@@ -1,25 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="250.0" prefWidth="350.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.pcgf.LoginController">
+<AnchorPane prefHeight="289.0" prefWidth="453.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.pcgf.LoginController">
    <children>
-      <Label text="IP-Address" AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="100.0">
+      <ImageView fitHeight="318.0" fitWidth="509.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/login2.jpg" />
+         </image>
+      </ImageView>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ffffff65" height="318.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="0.0" width="287.0" />
+      <Label layoutX="27.0" layoutY="113.0" text="IP-Address:" visible="false" AnchorPane.leftAnchor="27.0" AnchorPane.topAnchor="113.0">
          <font>
             <Font size="16.0" />
          </font>
       </Label>
-      <TextField fx:id="usernameTextField" layoutX="101.0" layoutY="64.0" promptText="Enter username" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="50.0" />
-      <Text fx:id="errorMessage" fill="RED" layoutX="68.0" layoutY="106.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="213.0" />
-      <Button fx:id="createGameButton" layoutX="41.0" layoutY="172.0" mnemonicParsing="false" onAction="#onClickCreate" prefHeight="26.0" prefWidth="100.0" text="Create a game" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="50.0" />
-      <Button fx:id="joinGameButton" layoutX="187.0" layoutY="185.0" mnemonicParsing="false" onAction="#onClickJoin" prefHeight="26.0" prefWidth="100.0" text="Join a game" AnchorPane.bottomAnchor="50.0" AnchorPane.rightAnchor="50.0" />
-      <TextField fx:id="ipAddressTextField" promptText="Enter IP Address" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="100.0" />
-      <Label text="Username:" AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="50.0">
+      <TextField fx:id="usernameTextField" layoutX="55.0" layoutY="58.0" prefHeight="36.0" prefWidth="177.0" promptText="Enter username" AnchorPane.rightAnchor="277.0" AnchorPane.topAnchor="58.0">
+         <font>
+            <Font size="15.0" />
+         </font></TextField>
+      <TextField fx:id="ipAddressTextField" layoutX="55.0" layoutY="120.0" prefHeight="36.0" prefWidth="177.0" promptText="Enter IP Address" AnchorPane.rightAnchor="277.0" AnchorPane.topAnchor="120.0">
+         <font>
+            <Font size="15.0" />
+         </font></TextField>
+      <Button fx:id="createGameButton" layoutX="84.0" layoutY="191.0" mnemonicParsing="false" onAction="#onClickCreate" prefHeight="36.0" prefWidth="120.0" text="Create a game" AnchorPane.bottomAnchor="91.0" AnchorPane.leftAnchor="84.0">
+         <font>
+            <Font size="15.0" />
+         </font></Button>
+      <Button fx:id="joinGameButton" layoutX="84.0" layoutY="251.0" mnemonicParsing="false" onAction="#onClickJoin" prefHeight="36.0" prefWidth="120.0" text="Join a game" AnchorPane.bottomAnchor="31.0" AnchorPane.rightAnchor="305.0">
+         <font>
+            <Font size="15.0" />
+         </font></Button>
+      <Label layoutX="27.0" layoutY="63.0" text="Username:" visible="false" AnchorPane.leftAnchor="27.0" AnchorPane.topAnchor="63.0">
          <font>
             <Font size="16.0" />
          </font>
       </Label>
    </children>
+   <effect>
+      <Blend />
+   </effect>
 </AnchorPane>

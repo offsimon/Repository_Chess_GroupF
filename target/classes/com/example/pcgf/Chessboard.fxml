@@ -261,42 +261,42 @@
             <Insets left="30.0" />
          </opaqueInsets>
       </GridPane>
-      <Text layoutX="70.0" layoutY="742.0" strokeType="OUTSIDE" strokeWidth="0.0" text="A">
+      <Text layoutX="70.0" layoutY="744.0" strokeType="OUTSIDE" strokeWidth="0.0" text="A">
          <font>
             <Font size="20.0" />
          </font>
       </Text>
-      <Text layoutX="145.0" layoutY="742.0" strokeType="OUTSIDE" strokeWidth="0.0" text="B">
+      <Text layoutX="145.0" layoutY="744.0" strokeType="OUTSIDE" strokeWidth="0.0" text="B">
          <font>
             <Font size="20.0" />
          </font>
       </Text>
-      <Text layoutX="220.0" layoutY="742.0" strokeType="OUTSIDE" strokeWidth="0.0" text="C">
+      <Text layoutX="220.0" layoutY="744.0" strokeType="OUTSIDE" strokeWidth="0.0" text="C">
          <font>
             <Font size="20.0" />
          </font>
       </Text>
-      <Text layoutX="295.0" layoutY="742.0" strokeType="OUTSIDE" strokeWidth="0.0" text="D">
+      <Text layoutX="295.0" layoutY="744.0" strokeType="OUTSIDE" strokeWidth="0.0" text="D">
          <font>
             <Font size="20.0" />
          </font>
       </Text>
-      <Text layoutX="370.0" layoutY="742.0" strokeType="OUTSIDE" strokeWidth="0.0" text="E">
+      <Text layoutX="370.0" layoutY="744.0" strokeType="OUTSIDE" strokeWidth="0.0" text="E">
          <font>
             <Font size="20.0" />
          </font>
       </Text>
-      <Text layoutX="445.0" layoutY="742.0" strokeType="OUTSIDE" strokeWidth="0.0" text="F">
+      <Text layoutX="445.0" layoutY="744.0" strokeType="OUTSIDE" strokeWidth="0.0" text="F">
          <font>
             <Font size="20.0" />
          </font>
       </Text>
-      <Text layoutX="520.0" layoutY="742.0" strokeType="OUTSIDE" strokeWidth="0.0" text="G">
+      <Text layoutX="520.0" layoutY="744.0" strokeType="OUTSIDE" strokeWidth="0.0" text="G">
          <font>
             <Font size="20.0" />
          </font>
       </Text>
-      <Text layoutX="595.0" layoutY="742.0" strokeType="OUTSIDE" strokeWidth="0.0" text="H">
+      <Text layoutX="595.0" layoutY="744.0" strokeType="OUTSIDE" strokeWidth="0.0" text="H">
          <font>
             <Font size="20.0" />
          </font>
@@ -346,12 +346,12 @@
             <Image url="@images/vs.png" />
          </image>
       </ImageView>
-      <Label alignment="CENTER_RIGHT" layoutX="36.0" layoutY="18.0" prefHeight="82.0" prefWidth="240.0" text="simon" textAlignment="CENTER" AnchorPane.bottomAnchor="660.0" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="20.0">
+      <Label fx:id="serverUsername" alignment="CENTER_RIGHT" layoutX="36.0" layoutY="18.0" prefHeight="82.0" prefWidth="240.0" text="-----" textAlignment="CENTER" AnchorPane.bottomAnchor="660.0" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="20.0">
          <font>
             <Font size="50.0" />
          </font>
       </Label>
-      <Label layoutX="50.0" layoutY="30.0" prefHeight="82.0" prefWidth="240.0" text="matti" textAlignment="CENTER" AnchorPane.bottomAnchor="660.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="20.0">
+      <Label fx:id="clientUsername" layoutX="50.0" layoutY="30.0" prefHeight="82.0" prefWidth="240.0" text="-----" textAlignment="CENTER" AnchorPane.bottomAnchor="660.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="20.0">
          <font>
             <Font size="50.0" />
          </font>

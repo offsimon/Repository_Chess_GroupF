@@ -14,7 +14,7 @@ public class Main extends Application {
         root.setControllerFactory(call -> new LoginController());
         primaryStage.setResizable(false);
         primaryStage.setTitle("Connection");
-        primaryStage.setScene(new Scene(root.load(), 350, 250));
+        primaryStage.setScene(new Scene(root.load()));
         primaryStage.show();
 
     }

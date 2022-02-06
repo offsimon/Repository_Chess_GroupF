@@ -13,15 +13,19 @@ public class LoginController {
     public Button submitButton;
     public Text errorMessage;
     public TextField usernameTextField;
+    public String username;
     public Button createGameButton;
     public Button joinGameButton;
+    public boolean isTheServer = false;
 
     private static String ipAddress = "";
     public TextField ipAddressTextField;
 
     public void onClickCreate(ActionEvent actionEvent) {
 
+        isTheServer = true;
         ipAddress = ipAddressTextField.getText();
+        username = usernameTextField.getText();
         System.out.println(ipAddress);
         try{
             Stage chessboard = new Stage();

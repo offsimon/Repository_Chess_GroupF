@@ -1,6 +1,7 @@
 package com.example.pcgf;
 
 import javafx.scene.Node;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -48,6 +49,8 @@ public class ChessboardController {
     public ImageView bishopWhite2;
     public ImageView queenWhite;
     public ImageView kingWhite;
+    public Label serverUsername;
+    public Label clientUsername;
 
     Pawn pawn = new Pawn(this);
     Bishop bishop = new Bishop(this);
@@ -64,7 +67,14 @@ public class ChessboardController {
     private boolean movementIsPossible = false;
 
     public ChessboardController(LoginController loginController) {
+
         login = loginController;
+        //serverUsername.setText(login.username);
+        /*if(loginController.isTheServer){
+            serverUsername.setText(login.username);
+        }else{
+            clientUsername.setText(login.username);
+        }*/
     }
 
     public void figureOnClick(MouseEvent mouseEvent) {
