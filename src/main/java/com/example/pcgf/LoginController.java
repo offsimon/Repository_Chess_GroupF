@@ -29,6 +29,7 @@ public class LoginController {
     private static ObjectInputStream streamFromServer = null;
     public Label usernameTooLong;
     public Label wrongInput;
+    public String color;
 
     public LoginController(ObjectOutputStream streamToServer, ObjectInputStream streamFromServer) {
         this.streamToServer = streamToServer;
@@ -44,6 +45,7 @@ public class LoginController {
 
             usernameTooLong.setVisible(false);
             wrongInput.setVisible(false);
+            color = "White";
 
             isTheServer = true;
             ipAddress = ipAddressTextField.getText();
@@ -54,7 +56,7 @@ public class LoginController {
             try {
                 Stage chessboard = new Stage();
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("Chessboard.fxml"));
-                loader.setControllerFactory(call -> new ChessboardController(this, streamFromServer, streamToServer, username));
+                loader.setControllerFactory(call -> new ChessboardController(this, streamFromServer, streamToServer, username, color));
                 chessboard.setResizable(false);
                 chessboard.setTitle("Chess");
                 chessboard.setScene(new Scene(loader.load()));
@@ -79,6 +81,7 @@ public class LoginController {
 
             usernameTooLong.setVisible(false);
             wrongInput.setVisible(false);
+            color = "Black";
 
             ipAddress = ipAddressTextField.getText();
             username = usernameTextField.getText();
@@ -88,7 +91,7 @@ public class LoginController {
             try {
                 Stage chessboard = new Stage();
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("Chessboard.fxml"));
-                loader.setControllerFactory(call -> new ChessboardController(this, streamFromServer, streamToServer, username));
+                loader.setControllerFactory(call -> new ChessboardController(this, streamFromServer, streamToServer, username, color));
                 chessboard.setResizable(false);
                 chessboard.setTitle("Chess");
                 chessboard.setScene(new Scene(loader.load()));

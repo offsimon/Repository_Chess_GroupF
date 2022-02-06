@@ -40,63 +40,70 @@ public class ChessboardController {
     private ObjectInputStream streamFromServer;
     private static int count = 0;
     private static String gegner = "";
+    private String color;
 
-    public ChessboardController(LoginController loginController, ObjectInputStream ois, ObjectOutputStream oos, String username) {
+    public ChessboardController(LoginController loginController, ObjectInputStream ois, ObjectOutputStream oos, String username, String color) {
         login = loginController;
         streamToServer = oos;
         streamFromServer = ois;
+        this.color = color;
         // serverUsername.setText(LoginController.getUsername());
         // clientUsername.setText(LoginController.getUsername());
     }
 
     public void figureOnClick(MouseEvent mouseEvent) {
         me = mouseEvent;
-        if (pressed == mouseEvent.getSource() && isPressed) {//same figure selected again
-            replaceImageToUnselected();
-            pressed = null;
-            isPressed = false;
-        } else if (pressed != mouseEvent.getSource() && isPressed) {//figure already selected but not the same == capture figure
 
-            Node n = (Node) mouseEvent.getSource();
-            if (pressed.getId().contains("White") && n.getId().contains("White") || pressed.getId().contains("Black") && n.getId().contains("Black")) { //ensure the player dont capture his own figure
+        Node meN = (Node) me.getSource();
+
+        if(meN.getId().contains(color)){
+            if (pressed == mouseEvent.getSource() && isPressed) {//same figure selected again
                 replaceImageToUnselected();
-                unselectFigure();
-            } else {
+                pressed = null;
+                isPressed = false;
+            } else if (pressed != mouseEvent.getSource() && isPressed) {//figure already selected but not the same == capture figure
 
-                assignFigure(checkInteger(GridPane.getRowIndex((Node) mouseEvent.getSource())), checkInteger(GridPane.getColumnIndex((Node) mouseEvent.getSource())));
-                if (movementIsPossible) {
-                    replaceImageToUnselected();
-                    Integer row = GridPane.getRowIndex((Node) mouseEvent.getSource());
-                    row = checkInteger(row);
-                    Integer column = GridPane.getColumnIndex((Node) mouseEvent.getSource());
-                    column = checkInteger(column);
-
-                    for (Node node : gridPane.getChildren()) {
-                        if (node == mouseEvent.getSource()) {
-                            if(!node.getId().startsWith("king")){//king cant be captured
-                                node.setVisible(false);
-                                node.setId(null);
-                            }else{
-                                movementIsPossible = false;
-                            }
-
-                        }
-                    }
-                    if(movementIsPossible){
-                        moveFigure(row, column);
-                    }
-                } else {
+                Node n = (Node) mouseEvent.getSource();
+                if (pressed.getId().contains("White") && n.getId().contains("White") || pressed.getId().contains("Black") && n.getId().contains("Black")) { //ensure the player dont capture his own figure
                     replaceImageToUnselected();
                     unselectFigure();
+                } else {
+
+                    assignFigure(checkInteger(GridPane.getRowIndex((Node) mouseEvent.getSource())), checkInteger(GridPane.getColumnIndex((Node) mouseEvent.getSource())));
+                    if (movementIsPossible) {
+                        replaceImageToUnselected();
+                        Integer row = GridPane.getRowIndex((Node) mouseEvent.getSource());
+                        row = checkInteger(row);
+                        Integer column = GridPane.getColumnIndex((Node) mouseEvent.getSource());
+                        column = checkInteger(column);
+
+                        for (Node node : gridPane.getChildren()) {
+                            if (node == mouseEvent.getSource()) {
+                                if(!node.getId().startsWith("king")){//king cant be captured
+                                    node.setVisible(false);
+                                    node.setId(null);
+                                }else{
+                                    movementIsPossible = false;
+                                }
+
+                            }
+                        }
+                        if(movementIsPossible){
+                            moveFigure(row, column);
+                        }
+                    } else {
+                        replaceImageToUnselected();
+                        unselectFigure();
+                    }
                 }
+
+
+            } else {//no figure selected
+                pressed = (ImageView) mouseEvent.getSource();
+                isPressed = true;
+                replaceImageToSelected();
+                //connectToServerWrite();
             }
-
-
-        } else {//no figure selected
-            pressed = (ImageView) mouseEvent.getSource();
-            isPressed = true;
-            replaceImageToSelected();
-            //connectToServerWrite();
         }
     }
 
