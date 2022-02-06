@@ -10,7 +10,7 @@ import java.util.Map;
 public class Server implements Serializable {
     private static ServerSocket serverSocket;
     private static Socket fromClient;
-    private static int count = 0;
+    public static int count = 0;
     private static final Map<String, ObjectInputStream> allReader = new HashMap<>();
     private static final Map<String, ObjectOutputStream> allWriter = new HashMap<>();
     private static String gegner = "";
@@ -27,6 +27,7 @@ public class Server implements Serializable {
             fromClient = null;
             try {
                 fromClient = serverSocket.accept();
+                count++;
                 String key = num+"";
                 System.out.println("A new client is connected: "+fromClient);
                 ObjectInputStream ois = new ObjectInputStream(fromClient.getInputStream());

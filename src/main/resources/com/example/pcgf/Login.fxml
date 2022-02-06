@@ -31,6 +31,8 @@
          <font>
             <Font size="15.0" />
          </font></Button>
+      <Label fx:id="usernameTooLong" layoutX="92.0" layoutY="94.0" text="username too long!" textFill="#e81010" visible="false" />
+      <Label fx:id="wrongInput" layoutX="110.0" layoutY="159.0" text="wrong input!" textFill="#e81010" visible="false" />
    </children>
    <effect>
       <Blend />

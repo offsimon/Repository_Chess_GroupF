@@ -16,38 +16,7 @@ import java.net.Socket;
 public class ChessboardController {
 
     public GridPane gridPane;
-    public ImageView pawnWhite1;
-    public ImageView pawnBlack1;
-    public ImageView pawnBlack2;
-    public ImageView pawnBlack3;
-    public ImageView pawnBlack4;
-    public ImageView pawnBlack5;
-    public ImageView pawnBlack6;
-    public ImageView pawnBlack7;
-    public ImageView pawnBlack8;
-    public ImageView rookBlack1;
-    public ImageView rookBlack2;
-    public ImageView knightBlack1;
-    public ImageView knightBlack2;
-    public ImageView bishopBlack1;
-    public ImageView bishopBlack2;
-    public ImageView queenBlack;
-    public ImageView kingBlack;
-    public ImageView pawnWhite2;
-    public ImageView pawnWhite7;
-    public ImageView pawnWhite5;
-    public ImageView pawnWhite4;
-    public ImageView pawnWhite3;
-    public ImageView pawnWhite6;
-    public ImageView pawnWhite8;
-    public ImageView rookWhite1;
-    public ImageView rookWhite2;
-    public ImageView knightWhite1;
-    public ImageView knightWhite2;
-    public ImageView bishopWhite1;
-    public ImageView bishopWhite2;
-    public ImageView queenWhite;
-    public ImageView kingWhite;
+
     public Label serverUsername;
     public Label clientUsername;
     public Label whiteChecked;
@@ -135,6 +104,7 @@ public class ChessboardController {
         Thread thread = new Thread(() -> {
             try {
                 gegner = (String) streamFromServer.readObject();
+                reloadButton.setVisible(true);
             } catch (IOException e) {
                 e.printStackTrace();
             } catch (ClassNotFoundException e) {
@@ -142,7 +112,45 @@ public class ChessboardController {
             }
         });
         thread.start();
+        //
         System.out.println(gegner);
+        if(!gegner.equals("")){
+            boolean needToCapture = false;
+            Node capture = null;
+            String[] split = gegner.split(",");
+            Integer r = Integer.valueOf(split[0]);
+            r = checkInteger(r);
+            Integer c = Integer.valueOf(split[1]);
+            c = checkInteger(c);
+            String id = split[2];
+
+            for (Node n : gridPane.getChildren()){
+                Integer nr = checkInteger(GridPane.getRowIndex(n));
+                Integer nc = checkInteger(GridPane.getColumnIndex(n));
+                if(nr == r && nc == c && n.getId() != null){
+                    capture = n;
+                }
+            }
+
+            for (Node n : gridPane.getChildren()) {
+                if(n.getId() != null){
+                    if(n.getId().equals(id)){
+                        if (capture != null){
+                           capture.setVisible(false);
+                           capture.setId(null);
+                            GridPane.setRowIndex(n, r);
+                            GridPane.setColumnIndex(n, c);
+                        }else{
+                            GridPane.setRowIndex(n, r);
+                            GridPane.setColumnIndex(n, c);
+                        }
+
+                    }
+                }
+            }
+        }
+
+        //
     }
 
     public void fieldOnClick(MouseEvent mouseEvent) {
@@ -165,42 +173,6 @@ public class ChessboardController {
             }
         }
     }
-
-    /*public static void connectToServerWrite() {
-        String ipAddress = login.getIpAddress();
-        ObjectOutputStream streamToServer;
-        ObjectInputStream streamFromServer;
-        Socket toServer;
-
-        try {
-            String name;
-            toServer = new Socket(ipAddress, 7543);
-            streamToServer = new ObjectOutputStream(toServer.getOutputStream());
-            streamToServer.writeObject(getRowIndex() + ":" + getColumnIndex());
-            streamFromServer = new ObjectInputStream(toServer.getInputStream());
-            String readFromServer = (String) streamFromServer.readObject();
-            System.out.println(readFromServer);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }*/
-
-    /*public static void connectToServerRead() {
-        String ipAddress = login.getIpAddress();
-        ObjectInputStream streamFromServer;
-        Socket toServer;
-        try {
-            String name;
-            toServer = new Socket(ipAddress, 7543);
-            streamFromServer = new ObjectInputStream(toServer.getInputStream());
-            String readFromServer = (String) streamFromServer.readObject();
-            System.out.println(readFromServer);
-            String[] split = readFromServer.split(":");
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }*/
 
     public void assignFigure(Integer row, Integer column) {
 
@@ -282,7 +254,7 @@ public class ChessboardController {
         try {
             /*streamToServer.writeObject(LoginController.getIpAddress());
             streamToServer.flush();*/
-            streamToServer.writeObject(row+"|"+column);
+            streamToServer.writeObject(row+","+column +","+pressed.getId());
             streamToServer.flush();
         } catch (IOException e) {
             e.printStackTrace();
@@ -369,6 +341,7 @@ public class ChessboardController {
     }
 
     public void reloadOnClick(ActionEvent actionEvent) {
+        reloadButton.setVisible(false);
         testClient();
     }
 }
