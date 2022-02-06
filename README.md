@@ -1,13 +1,13 @@
 # Repository_Chess_GroupF
 https://docs.google.com/document/d/1dar4bXjVjHMYCRpZ8DuP7boF3E-mua2dFdSAhmED0kE/edit?usp=sharing
 
--
+
 -
 Schach - Gruppe F | Anleitung
 
 Nachdem der Server gestartet ist kann von beiden Endgeräten die Main-Klasse gestartet werden. Dabei öffnet sich ein Menü in dem man seinen Benutzernamen und die IP-Adresse des anderen Nutzers eingeben muss. Dabei ist zu beachten, dass der Client welcher den Server hostet als IP "localhost" eintragen sollte. Nun sind wir startbereit das bedeutet der Host klickt auf den Button "Create a game" und der andere Nutzer versucht dem Spiel beizutreten. Ab jetzt kann das Schachspiel losgehen. Abwechselnd ziehen beide Nutzer ihre Figuren und lassen dem Spiel freien Lauf. Wichtig dabei ist nach jedem Zug des Gegners das Spiel per Button zu aktualisieren. Ab jetzt werden nur noch die üblichen Schachregeln benötigt und dem Spiel steht nichts mehr im Weg! :)
 -
--
+
 
 Resümee der Woche 10.01.2022 - 17.01.2022:
 Die Gruppeneinteilung wurde abgeschlossen und wir haben gemeinsam das Versionsverwaltungssystem auf github eingerichtet. Zuerst hatten wir Anfangsschwierigkeiten aber mit der Zeit wurde es verständlicher. Mit dem Schachbrettmuster in JavaFx haben wir schon diese Woche begonnen, da wir Zeit gehabt haben. Das Schachbrett zu designen hat sehr gut funktioniert und auch die erste Startseite wurde erfolgreich erstellt. Nächste Woche beginnen wir mit der Implementierung der Netzwerkverbindung. Die dafür vorgesehene Zeit ist eine Woche.
