@@ -11,6 +11,9 @@ Das Schachbrett wurde diese Woche fertig designed und das Bewegen der Figuren fu
 Resümee der Woche 24.01.2022 - 31.01.2022:
 Die Funktion, wenn man eine Figur anklickt, dass sie dann markiert wird funktioniert bereits einwandfrei und auch das Bewegen der Figuren funktioniert sehr gut. Die Server-Client Funktion wurde auch verbessert und funktioniert fast fehlerfrei. Wir haben die Java-Version von unserem Projekt von 1.8 zu 17.0.2 geändert. Dabei ergaben sich sehr viele Probleme welche wir bis jetzt noch nicht zu 100% gelöst haben. Wir werden in dieser Woche probieren, dass wir bis Donnerstag das Projekt abschließen um danach noch restliche Fehler zu beheben.
 
+Resümme der Woche 31.01.2022 - 7.02.2022
+Das Bewegen der Figuren funktioniert mit deren verschiedenen Regeln funktioniert. Ebenso funktioniert die Verbindungen von Server zu den zwei Clients. Es ist möglich zu spielen da auch das Spielfeld der zwei Clients aktualisiert werden kann. Wir hatten diese Woche sehr große Probleme mit der Server-Client Verbindung was uns sehr viel Zeit genommen hat, da es im Projekt unser größtes Problem war.
+
 
 Commits des alten Repository's
 ![oldCommits](https://user-images.githubusercontent.com/91054106/151842021-5adcd498-7629-40d7-a7de-716604f415ea.PNG)
