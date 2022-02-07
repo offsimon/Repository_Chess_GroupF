@@ -2,7 +2,7 @@
 https://docs.google.com/document/d/1dar4bXjVjHMYCRpZ8DuP7boF3E-mua2dFdSAhmED0kE/edit?usp=sharing
 Stundenteinteilung
 https://docs.google.com/spreadsheets/d/11cWKSAv_kFPycO8i7GWlbGMqQtyfUSABGzTaNiNHsPQ/edit?usp=sharing
-
+ 
 Schach - Gruppe F | Anleitung
 
 Nachdem der Server gestartet ist kann von beiden Endgeräten die Main-Klasse gestartet werden. Dabei öffnet sich ein Menü in dem man seinen Benutzernamen und die IP-Adresse des anderen Nutzers eingeben muss. Dabei ist zu beachten, dass der Client welcher den Server hostet als IP "localhost" eintragen sollte. Nun sind wir startbereit das bedeutet der Host klickt auf den Button "Create a game" und der andere Nutzer versucht dem Spiel beizutreten. Ab jetzt kann das Schachspiel losgehen. Abwechselnd ziehen beide Nutzer ihre Figuren und lassen dem Spiel freien Lauf. Wichtig dabei ist nach jedem Zug des Gegners das Spiel per Button zu aktualisieren. Ab jetzt werden nur noch die üblichen Schachregeln benötigt und dem Spiel steht nichts mehr im Weg! :)
