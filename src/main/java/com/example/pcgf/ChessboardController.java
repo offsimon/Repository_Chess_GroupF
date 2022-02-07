@@ -56,11 +56,12 @@ public class ChessboardController {
 
         Node meN = (Node) me.getSource();
 
-        if(meN.getId().contains(color)){
             if (pressed == mouseEvent.getSource() && isPressed) {//same figure selected again
-                replaceImageToUnselected();
-                pressed = null;
-                isPressed = false;
+                if(meN.getId().contains(color)){
+                    replaceImageToUnselected();
+                    pressed = null;
+                    isPressed = false;
+                }
             } else if (pressed != mouseEvent.getSource() && isPressed) {//figure already selected but not the same == capture figure
 
                 Node n = (Node) mouseEvent.getSource();
@@ -99,13 +100,14 @@ public class ChessboardController {
 
 
             } else {//no figure selected
-                pressed = (ImageView) mouseEvent.getSource();
-                isPressed = true;
-                replaceImageToSelected();
+                if(meN.getId().contains(color)){
+                    pressed = (ImageView) mouseEvent.getSource();
+                    isPressed = true;
+                    replaceImageToSelected();
+                }
                 //connectToServerWrite();
             }
         }
-    }
 
     public void testClient(){
         Thread thread = new Thread(() -> {

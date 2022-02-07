@@ -347,12 +347,12 @@
             <Image url="@images/vs.png" />
          </image>
       </ImageView>
-      <Label fx:id="serverUsername" alignment="CENTER_RIGHT" layoutX="36.0" layoutY="18.0" prefHeight="82.0" prefWidth="240.0" text="-----" textAlignment="CENTER" AnchorPane.bottomAnchor="660.0" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="20.0">
+      <Label fx:id="serverUsername" alignment="CENTER_RIGHT" layoutX="41.0" layoutY="2.0" prefHeight="82.0" prefWidth="240.0" text="simon" textAlignment="CENTER" AnchorPane.bottomAnchor="678.0" AnchorPane.leftAnchor="41.0" AnchorPane.topAnchor="2.0">
          <font>
             <Font size="50.0" />
          </font>
       </Label>
-      <Label fx:id="clientUsername" layoutX="50.0" layoutY="30.0" prefHeight="82.0" prefWidth="240.0" text="-----" textAlignment="CENTER" AnchorPane.bottomAnchor="660.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="20.0">
+      <Label fx:id="clientUsername" layoutX="401.0" layoutY="2.0" prefHeight="82.0" prefWidth="240.0" text="matti" textAlignment="CENTER" AnchorPane.bottomAnchor="678.0" AnchorPane.rightAnchor="39.0" AnchorPane.topAnchor="2.0">
          <font>
             <Font size="50.0" />
          </font>
